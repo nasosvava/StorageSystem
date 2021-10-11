@@ -12,4 +12,6 @@ public interface StorageService {
 
     Storage updateStorage(Storage storage);
 
+    void deleteStorage(Long id);
+
 }

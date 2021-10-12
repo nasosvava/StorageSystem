@@ -5,9 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -29,5 +27,5 @@ public class Shelve implements Serializable {
 
     @OneToMany(mappedBy="shelve")
     @NotNull
-    private Set<Item> item;
+    private Set<Product> product;
 }

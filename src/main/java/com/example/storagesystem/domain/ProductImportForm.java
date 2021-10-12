@@ -14,8 +14,8 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @ToString
-@Table(name = "itemImportForm")
-public class ItemImportForm implements Serializable{
+@Table(name = "productImportForm")
+public class ProductImportForm implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +33,7 @@ public class ItemImportForm implements Serializable{
     @NotNull
     private String receipts;
 
-    @OneToMany(mappedBy="itemImportForm")
+    @OneToMany(mappedBy="productImportForm")
     @NotNull
-    private Set<Item> items;
+    private Set<Product> products;
 }

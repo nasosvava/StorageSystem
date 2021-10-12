@@ -13,11 +13,14 @@ import java.io.Serializable;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "item")
-public class Item implements Serializable{
+@Table(name = "product")
+public class Product implements Serializable{
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "barcode")
     @NotNull
     private String barcode;
@@ -41,11 +44,11 @@ public class Item implements Serializable{
     private Shelve shelve;
 
     @ManyToOne
-    @JoinColumn(name = "itemExportForm_id" ,nullable=false)
-    @NotNull
-    private  ItemExportForm itemExportForm;
+    @JoinColumn(name = "productExportForm_id" ,nullable=false)
+    private ProductExportForm productExportForm;
 
     @ManyToOne
-    @JoinColumn(name = "itemImportForm_id" ,nullable=false)
-    private  ItemImportForm itemImportForm;
+    @JoinColumn(name = "productImportForm_id" ,nullable=false)
+    @NotNull
+    private ProductImportForm productImportForm;
 }

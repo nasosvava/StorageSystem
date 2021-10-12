@@ -2,6 +2,7 @@ package com.example.storagesystem.repository.customrepository;
 
 import com.example.storagesystem.dto.ProductExportFormDTO;
 
+import java.util.Date;
 import java.util.List;
 
 public interface CustomProductExportFormRepository {
@@ -12,5 +13,5 @@ public interface CustomProductExportFormRepository {
 
     ProductExportFormDTO findProductExportFormDeliveries(String deliveries);
 
-
+    ProductExportFormDTO findProductExportFormDTOExportDate(Date exportDate);
 }

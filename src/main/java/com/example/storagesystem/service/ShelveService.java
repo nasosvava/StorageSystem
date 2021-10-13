@@ -15,8 +15,6 @@ public interface ShelveService {
 
     List<ShelveDTO> findAllShelves();
 
-
-
     ShelveDTO findById(Long id);
 
 

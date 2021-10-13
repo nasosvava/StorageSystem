@@ -1,13 +1,22 @@
 package com.example.storagesystem.service;
 
+import com.example.storagesystem.domain.ProductExportForm;
 import com.example.storagesystem.domain.ProductImportForm;
+import com.example.storagesystem.dto.MeasurementUnitDTO;
+import com.example.storagesystem.dto.ProductExportFormDTO;
+import com.example.storagesystem.dto.ProductImportFormDTO;
 
 import java.util.List;
 
 public interface ProductImportFormService {
 
-    ProductImportForm productImportForm(ProductImportForm productImportForm);
+    ProductImportForm dtoToEntity(ProductImportFormDTO productImportFormDTO, ProductImportForm productImportForm);
 
-    List<ProductImportForm> findAllImportItems();
+    ProductImportFormDTO entityToDto(ProductImportFormDTO productImportFormDTO, ProductImportForm productImportForm);
 
+    ProductImportForm saveProductExportForm(ProductImportFormDTO productImportFormDTO);
+
+    List<ProductImportFormDTO> findAllImportForms();
+
+    ProductImportFormDTO findById(Long id);
 }

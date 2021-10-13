@@ -1,18 +1,25 @@
 package com.example.storagesystem.service;
 
 import com.example.storagesystem.domain.Shelve;
+import com.example.storagesystem.dto.ShelveDTO;
 
 import java.util.List;
 
 public interface ShelveService {
 
-    Shelve shelve(Shelve shelve);
+    Shelve dtoToEntity(ShelveDTO shelveDTO, Shelve shelve);
 
-    List<Shelve> findAllShelves();
+    ShelveDTO entityToDto(ShelveDTO shelveDTO, Shelve shelve);
 
-    Shelve updateShelve(Shelve shelve);
+    Shelve saveShelve(ShelveDTO shelveDTO);
 
-    void deleteShelve(Long id);
+    List<ShelveDTO> findAllShelves();
 
-    Long numberOfShelves();
+
+
+    ShelveDTO findById(Long id);
+
+
+
+
 }

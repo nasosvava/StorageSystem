@@ -39,11 +39,15 @@ public class StorageImpl implements StorageService {
 
         return storageDTO;
     }
-    //        Storage storage = (storageDTO.getId() == null) ? new Storage() :dtoToEntity(storageRepository.findById(storageDTO.getId()),storage).orElse(null);
+
     @Override
     public Storage saveStorage(StorageDTO storageDTO) {
-        Storage storage = new Storage();
-        dtoToEntity(storageDTO,storage);
+        Storage storage;
+        if(storageDTO.getId()!=null){
+            storage = storageRepository.getById(storageDTO.getId());
+        }else{
+            storage = new Storage();
+        }
         dtoToEntity(storageDTO,storage);
         storageRepository.save(storage);
         return  storage;

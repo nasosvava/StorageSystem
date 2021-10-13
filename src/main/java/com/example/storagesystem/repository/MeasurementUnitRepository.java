@@ -1,7 +1,10 @@
 package com.example.storagesystem.repository;
 
 import com.example.storagesystem.domain.MeasurementUnit;
+import com.example.storagesystem.repository.customrepository.CustomMeasurementUnitRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface MeasurementUnitRepository extends JpaRepository<MeasurementUnit,Long> {
+@Repository
+public interface MeasurementUnitRepository extends JpaRepository<MeasurementUnit,Long>  {
 }

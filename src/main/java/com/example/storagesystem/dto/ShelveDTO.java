@@ -4,7 +4,9 @@ package com.example.storagesystem.dto;
 import lombok.*;
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -16,7 +18,7 @@ public class ShelveDTO {
 
     private Long id;
 
-    private Set<StorageDTO> storagesDTO = new HashSet<>();
+    private List<StorageDTO> storagesDTO = new ArrayList<>();
 
-    private Set<ProductDTO> productDTO;
+    private List<ProductDTO> productDTO;
 }

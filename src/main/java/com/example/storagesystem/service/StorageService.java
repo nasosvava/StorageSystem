@@ -1,19 +1,27 @@
 package com.example.storagesystem.service;
 
+import com.example.storagesystem.domain.Shelve;
 import com.example.storagesystem.domain.Storage;
+import com.example.storagesystem.dto.StorageDTO;
 
 import java.util.List;
 
 public interface StorageService {
 
-    Storage saveStorage(Storage storage);
+    Storage dtoToEntity(StorageDTO storageDTO,Storage storage);
 
-    List<Storage> findAllStorages();
+    StorageDTO entityToDto(StorageDTO storageDTO,Storage storage);
 
-    Storage updateStorage(Storage storage);
+    Storage saveStorage(StorageDTO storageDTO);
+
+    List<StorageDTO> findAllStorages();
 
     void deleteStorage(Long id);
 
     Long numberOfShelves();
+
+    StorageDTO findById(Long id);
+
+
 
 }

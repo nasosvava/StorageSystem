@@ -9,7 +9,9 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -36,8 +38,7 @@ public class Storage implements Serializable {
             joinColumns = { @JoinColumn(name = "storage_id") },
             inverseJoinColumns = { @JoinColumn(name = "shelve_id") }
     )
-    @NotNull
-    private Set<Shelve> shelves = new HashSet<>();
+    private List<Shelve> shelves = new ArrayList<>();
 
 
 

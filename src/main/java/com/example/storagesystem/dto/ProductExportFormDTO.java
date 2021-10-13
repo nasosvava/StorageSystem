@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -22,5 +23,5 @@ public class ProductExportFormDTO {
 
     private String deliveries;
 
-    private Set<ProductDTO> productsDTO;
+    private List<ProductDTO> productsDTO;
 }

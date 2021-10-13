@@ -6,15 +6,17 @@ import java.util.List;
 
 public interface CustomProductRepository {
 
-    ProductDTO findProductId(Long id);
+    ProductDTO getProductId(Long id);
 
-    List<ProductDTO> findAllProducts();
+    List<ProductDTO> getAllProducts();
 
-    ProductDTO findProductBarcode(String barcode);
+    ProductDTO getProductBarcode(String barcode);
 
-    List<ProductDTO> findProductShelve(Long id);
+    List<ProductDTO> getProductShelve(Long id);
 
-    ProductDTO findProductExportForm(Long id);
+    ProductDTO getProductExportForm(Long id);
 
-    ProductDTO findProductImportForm(Long id);
+    ProductDTO getProductImportForm(Long id);
+
+    ProductDTO getProductQuantity(Long id);
 }

@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -31,5 +32,5 @@ public class ProductExportForm implements Serializable {
     private String deliveries;
 
     @OneToMany(mappedBy= "productExportForm")
-    private Set<Product> products;
+    private List<Product> products;
 }

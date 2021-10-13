@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface CustomProductImportFormRepository {
 
-    ProductImportFormDTO findProductImportFormId(Long id);
+    ProductImportFormDTO getProductImportFormId(Long id);
 
-    List<ProductImportFormDTO> findAll();
+    List<ProductImportFormDTO> getAll();
 
-    ProductImportFormDTO findProductImportFormReceipts(String receipts);
+    ProductImportFormDTO getProductImportFormReceipts(String receipts);
 
-    ProductImportFormDTO findProductImportFormDTOExportDate(Date importDate);
+    ProductImportFormDTO getProductImportFormDTOExportDate(Date importDate);
 }

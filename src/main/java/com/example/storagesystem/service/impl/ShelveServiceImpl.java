@@ -1,7 +1,7 @@
 package com.example.storagesystem.service.impl;
 
 import com.example.storagesystem.domain.Shelve;
-import com.example.storagesystem.repository.ShelveRepository;
+import com.example.storagesystem.repository.ShelfRepository;
 import com.example.storagesystem.service.ShelveService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,28 +10,28 @@ import java.util.List;
 public class ShelveServiceImpl implements ShelveService {
 
     @Autowired
-    private  ShelveRepository shelveRepository;
+    private ShelfRepository shelfRepository;
 
     @Override
     public Shelve shelve(Shelve shelve) {
-        shelveRepository.save(shelve);
+        shelfRepository.save(shelve);
         return shelve;
     }
 
     @Override
     public List<Shelve> findAllShelves() {
-        return shelveRepository.findAll();
+        return shelfRepository.findAll();
     }
 
     @Override
     public Shelve updateShelve(Shelve shelve) {
-        shelveRepository.save(shelve);
+        shelfRepository.save(shelve);
         return shelve;
     }
 
     @Override
     public void deleteShelve(Long id) {
-        shelveRepository.deleteById(id);
+        shelfRepository.deleteById(id);
     }
 
     @Override

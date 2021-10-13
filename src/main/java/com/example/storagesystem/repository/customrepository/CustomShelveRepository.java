@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface CustomShelveRepository {
 
-    ShelveDTO findShelveId(Long id);
+    ShelveDTO getShelveId(Long id);
 
-    List<ShelveDTO> findAll();
+    List<ShelveDTO> getAll();
 
-    List<ShelveDTO> findShelveStorage(Long id);
+    List<ShelveDTO> getShelveStorage(Long id);
 
 }

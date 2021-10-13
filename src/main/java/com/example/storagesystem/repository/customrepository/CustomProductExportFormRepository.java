@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface CustomProductExportFormRepository {
 
-    ProductExportFormDTO findProductExportFormId(Long id);
+    ProductExportFormDTO getProductExportFormId(Long id);
 
-    List<ProductExportFormDTO> findAll();
+    List<ProductExportFormDTO> getAllProductExportForms();
 
-    ProductExportFormDTO findProductExportFormDeliveries(String deliveries);
+    ProductExportFormDTO getProductExportFormDeliveries(String deliveries);
 
-    ProductExportFormDTO findProductExportFormDTOExportDate(Date exportDate);
+    ProductExportFormDTO getProductExportFormDTOExportDate(Date exportDate);
 }

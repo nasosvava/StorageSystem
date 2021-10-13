@@ -7,6 +7,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -24,5 +25,5 @@ public class ProductImportFormDTO {
 
     private String receipts;
 
-    private Set<ProductDTO> productsDTO;
+    private List<ProductDTO> productsDTO;
 }

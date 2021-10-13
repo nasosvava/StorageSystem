@@ -1,12 +1,10 @@
 package com.example.storagesystem.dto;
 
-import com.example.storagesystem.domain.Shelve;
-import lombok.*;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
+import lombok.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -19,6 +17,6 @@ public class StorageDTO {
 
     private String storage_description;
 
-    private Set<ShelveDTO> shelvesDTO = new HashSet<>();
+    private List<ShelveDTO> shelvesDTO = new ArrayList<>();
 
 }

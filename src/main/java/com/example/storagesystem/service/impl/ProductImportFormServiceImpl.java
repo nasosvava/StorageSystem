@@ -7,10 +7,11 @@ import com.example.storagesystem.repository.ProductImportFormRepository;
 import com.example.storagesystem.service.ProductImportFormService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Service
 public class ProductImportFormServiceImpl implements ProductImportFormService{
 
     @Autowired
@@ -40,7 +41,7 @@ public class ProductImportFormServiceImpl implements ProductImportFormService{
     }
 
     @Override
-    public ProductImportForm saveProductExportForm(ProductImportFormDTO productImportFormDTO) {
+    public ProductImportForm saveProductImportForm(ProductImportFormDTO productImportFormDTO) {
         ProductImportForm productImportForm;
         if(productImportFormDTO.getId() != null){
             productImportForm = productImportFormRepository.getById(productImportFormDTO.getId());

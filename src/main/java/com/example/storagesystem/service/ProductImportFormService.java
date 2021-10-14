@@ -14,7 +14,7 @@ public interface ProductImportFormService {
 
     ProductImportFormDTO entityToDto(ProductImportFormDTO productImportFormDTO, ProductImportForm productImportForm);
 
-    ProductImportForm saveProductExportForm(ProductImportFormDTO productImportFormDTO);
+    ProductImportForm saveProductImportForm(ProductImportFormDTO productImportFormDTO);
 
     List<ProductImportFormDTO> findAllImportForms();
 

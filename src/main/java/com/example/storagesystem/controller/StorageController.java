@@ -1,5 +1,6 @@
 package com.example.storagesystem.controller;
 
+import com.example.storagesystem.domain.Shelve;
 import com.example.storagesystem.domain.Storage;
 import com.example.storagesystem.dto.StorageDTO;
 import com.example.storagesystem.service.ShelveService;
@@ -20,6 +21,8 @@ public class StorageController {
     @Autowired
     private StorageService storageService;
 
+    @Autowired
+    private ShelveService shelveService;
 
     @GetMapping("/getAll")
     public ResponseEntity<?> getAllStorages(){
@@ -30,6 +33,7 @@ public class StorageController {
     @PostMapping("/create")
     public ResponseEntity<?> createStorage(@RequestBody StorageDTO storageDTO){
         Storage storage = storageService.saveStorage(storageDTO);
+
         return new ResponseEntity<>(storage,OK);
     }
 

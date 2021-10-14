@@ -23,11 +23,13 @@ public class Shelve implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(mappedBy = "shelves")
-    @NotNull
-    private List<Storage> storages = new ArrayList<>();
+    @Column(name = "name")
+    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "storage_id")
+    private Storage storage;
 
     @OneToMany(mappedBy="shelve")
-    @NotNull
     private List<Product> product;
 }

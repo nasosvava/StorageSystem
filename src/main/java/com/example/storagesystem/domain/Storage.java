@@ -28,16 +28,10 @@ public class Storage implements Serializable {
     private Long id;
 
     @Column(name = "description")
-    @NotNull
     private String storage_description;
 
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "storage_shelve",
-            joinColumns = { @JoinColumn(name = "storage_id") },
-            inverseJoinColumns = { @JoinColumn(name = "shelve_id") }
-    )
+    @OneToMany(mappedBy = "storage")
     private List<Shelve> shelves = new ArrayList<>();
 
 

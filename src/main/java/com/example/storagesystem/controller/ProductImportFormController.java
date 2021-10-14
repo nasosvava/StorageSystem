@@ -35,7 +35,7 @@ public class ProductImportFormController {
     }
 
     @GetMapping("/findById/{id}")
-    public ResponseEntity<?> findProductExportFormById(@PathVariable("id") Long storageId){
-        return new ResponseEntity<>(productImportFormService.findById(storageId),OK);
+    public ResponseEntity<?> findProductExportFormById(@PathVariable("id") Long productExportForm){
+        return new ResponseEntity<>(productImportFormService.findById(productExportForm),OK);
     }
 }

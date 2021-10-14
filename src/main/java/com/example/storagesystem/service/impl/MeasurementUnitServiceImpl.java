@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -50,12 +51,19 @@ public class MeasurementUnitServiceImpl implements MeasurementUnitService {
             measurementUnit = new MeasurementUnit();
         }
         dtoToEntity(measurementUnitDTO,measurementUnit);
+        measurementUnitRepository.save(measurementUnit);
         return measurementUnit;
     }
 
     @Override
     public List<MeasurementUnitDTO> findAllMeasurementUnits() {
-        return null;
+        List<MeasurementUnitDTO> allMeasurementUnitDTO = new ArrayList<>();
+        List<MeasurementUnit> allMeasurementUnits = measurementUnitRepository.findAll();
+        for (int i = 0; i <allMeasurementUnits.size() ; i++) {
+            MeasurementUnitDTO measurementUnitDTO = new MeasurementUnitDTO();
+            allMeasurementUnitDTO.add(entityToDto(measurementUnitDTO,allMeasurementUnits.get(i)));
+        }
+        return allMeasurementUnitDTO;
     }
 
     @Override

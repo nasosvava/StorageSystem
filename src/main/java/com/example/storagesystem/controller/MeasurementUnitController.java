@@ -27,13 +27,13 @@ public class MeasurementUnitController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createMeasurementUnits(@RequestBody MeasurementUnitDTO measurementUnitDTO){
+    public ResponseEntity<?> createMeasurementUnit(@RequestBody MeasurementUnitDTO measurementUnitDTO){
         MeasurementUnit measurementUnit = measurementUnitService.saveMeasurementUnit(measurementUnitDTO);
         return new ResponseEntity<>(measurementUnit,OK);
     }
 
     @GetMapping("/findById/{id}")
-    public ResponseEntity<?> findMeasurementUnitsById(@PathVariable("id") Long storageId){
-        return new ResponseEntity<>(measurementUnitService.findById(storageId),OK);
+    public ResponseEntity<?> findMeasurementUnitById(@PathVariable("id") Long measurementUnitId){
+        return new ResponseEntity<>(measurementUnitService.findById(measurementUnitId),OK);
     }
 }

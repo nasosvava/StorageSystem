@@ -32,7 +32,7 @@ public class ShelveController {
     }
 
     @GetMapping("/findById/{id}")
-    public ResponseEntity<?> findShelveById(@PathVariable("id") Long storageId){
-        return new ResponseEntity<>(shelveService.findById(storageId),OK);
+    public ResponseEntity<?> findShelveById(@PathVariable("id") Long shelveId){
+        return new ResponseEntity<>(shelveService.findById(shelveId),OK);
     }
 }

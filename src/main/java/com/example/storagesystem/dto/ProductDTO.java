@@ -1,9 +1,5 @@
 package com.example.storagesystem.dto;
 
-import com.example.storagesystem.domain.MeasurementUnit;
-import com.example.storagesystem.domain.ProductExportForm;
-import com.example.storagesystem.domain.ProductImportForm;
-import com.example.storagesystem.domain.Shelve;
 import lombok.*;
 
 
@@ -22,11 +18,9 @@ public class ProductDTO {
 
     private double quantity;
 
-    private MeasurementUnitDTO measurementUnitDTO;
+    private Long measurementUnitDTO;
 
-    private ShelveDTO shelveDTO;
+    private Long shelveDTO;
 
-    private ProductExportFormDTO productExportFormDTO;
-
-    private ProductImportFormDTO productImportFormDTO;
+    private Long productFormDTO;
 }

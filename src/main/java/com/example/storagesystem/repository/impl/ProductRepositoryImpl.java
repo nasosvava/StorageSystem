@@ -27,12 +27,7 @@ public class ProductRepositoryImpl implements CustomProductRepository {
     }
 
     @Override
-    public ProductDTO getProductExportForm(Long id) {
-        return null;
-    }
-
-    @Override
-    public ProductDTO getProductImportForm(Long id) {
+    public ProductDTO getProductForm(Long id) {
         return null;
     }
 

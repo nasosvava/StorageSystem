@@ -40,15 +40,11 @@ public class Product implements Serializable{
 
     @ManyToOne
     @JoinColumn(name="shelve_id", nullable=false)
-    @NotNull
     private Shelve shelve;
 
-    @ManyToOne
-    @JoinColumn(name = "productExportForm_id" ,nullable=false)
-    private ProductExportForm productExportForm;
 
     @ManyToOne
-    @JoinColumn(name = "productImportForm_id" ,nullable=false)
+    @JoinColumn(name = "productForm_id" ,nullable=false)
     @NotNull
-    private ProductImportForm productImportForm;
+    private ProductForm productForm;
 }

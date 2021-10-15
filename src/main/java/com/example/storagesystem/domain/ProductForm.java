@@ -1,4 +1,5 @@
 package com.example.storagesystem.domain;
+import com.example.storagesystem.enumaration.FormCategory;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,12 +16,16 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @ToString
-@Table(name = "productImportForm")
-public class ProductImportForm implements Serializable{
+@Table(name = "productForm")
+public class ProductForm implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "form_type",nullable = false)
+    private FormCategory formCategory;
 
     @Column(name = "import_date")
     @NotNull
@@ -34,7 +39,7 @@ public class ProductImportForm implements Serializable{
     @NotNull
     private String receipts;
 
-    @OneToMany(mappedBy="productImportForm")
+    @OneToMany(mappedBy="productForm")
     @NotNull
     private List<Product> products;
 }

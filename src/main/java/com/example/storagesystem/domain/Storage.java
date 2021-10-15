@@ -1,6 +1,9 @@
 package com.example.storagesystem.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,7 +22,6 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @Entity
-@ToString
 @Table(name = "storage")
 public class Storage implements Serializable {
 
@@ -32,8 +34,15 @@ public class Storage implements Serializable {
 
 
     @OneToMany(mappedBy = "storage")
+    @JsonIgnore
     private List<Shelve> shelves = new ArrayList<>();
 
-
-
+    @Override
+    public String toString() {
+        return "Storage{" +
+                "id=" + id +
+                ", storage_description='" + storage_description + '\'' +
+                ", shelves=" + shelves +
+                '}';
+    }
 }

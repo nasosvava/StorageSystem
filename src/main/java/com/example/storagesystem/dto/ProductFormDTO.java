@@ -1,9 +1,11 @@
 package com.example.storagesystem.dto;
 
+
 import com.example.storagesystem.domain.Product;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -13,15 +15,15 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ProductExportFormDTO {
+public class ProductFormDTO {
 
     private Long id;
 
-    private Date exportDate;
+    private Date importDate;
 
     private String description;
 
-    private String deliveries;
+    private String receipts;
 
     private List<ProductDTO> productsDTO;
 }

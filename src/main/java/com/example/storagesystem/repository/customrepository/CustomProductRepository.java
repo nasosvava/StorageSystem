@@ -14,9 +14,7 @@ public interface CustomProductRepository {
 
     List<ProductDTO> getProductShelve(Long id);
 
-    ProductDTO getProductExportForm(Long id);
-
-    ProductDTO getProductImportForm(Long id);
+    ProductDTO getProductForm(Long id);
 
     ProductDTO getProductQuantity(Long id);
 }

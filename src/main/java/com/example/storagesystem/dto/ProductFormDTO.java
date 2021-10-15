@@ -19,11 +19,17 @@ public class ProductFormDTO {
 
     private Long id;
 
+    private String formCategory;
+
     private Date importDate;
+
+    private double quantity;
 
     private String description;
 
-    private String receipts;
+    private String transactionCategory;
+
+    private boolean isCanceled;
 
     private List<ProductDTO> productsDTO;
 }

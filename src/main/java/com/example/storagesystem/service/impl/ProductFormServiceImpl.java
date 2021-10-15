@@ -1,10 +1,14 @@
 package com.example.storagesystem.service.impl;
 
 
+import com.example.storagesystem.domain.Product;
 import com.example.storagesystem.domain.ProductForm;
+import com.example.storagesystem.dto.ProductDTO;
 import com.example.storagesystem.dto.ProductFormDTO;
 import com.example.storagesystem.repository.ProductFormRepository;
+import com.example.storagesystem.repository.ProductRepository;
 import com.example.storagesystem.service.ProductFormService;
+import com.example.storagesystem.service.ProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +21,11 @@ public class ProductFormServiceImpl implements ProductFormService {
     @Autowired
     ProductFormRepository productFormRepository;
 
+    @Autowired
+    ProductService productService;
+
+    @Autowired
+    ProductRepository productRepository;
 
     @Override
     public ProductForm dtoToEntity(ProductFormDTO productFormDTO, ProductForm productForm) {
@@ -45,12 +54,21 @@ public class ProductFormServiceImpl implements ProductFormService {
     @Override
     public ProductForm saveProductForm(ProductFormDTO productFormDTO) {
         ProductForm productForm;
-        if(productFormDTO.getId() != null){
+        List<Product> productIn = new ArrayList<>();
+        Product product = new Product();
+        if (productFormDTO.getId() != null) {
             productForm = productFormRepository.getById(productFormDTO.getId());
-        }else {
+        } else {
             productForm = new ProductForm();
         }
         dtoToEntity(productFormDTO, productForm);
+
+        for (ProductDTO productDTO : productFormDTO.getProductsDTO()) {
+            productService.saveProduct(productDTO);
+            productService.dtoToEntity(productDTO, product);
+            productIn.add(product);
+        }
+        productFormRepository.save(productForm);
         return productForm;
     }
 

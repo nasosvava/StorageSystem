@@ -1,11 +1,14 @@
 package com.example.storagesystem.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -29,22 +32,14 @@ public class Product implements Serializable{
     @NotNull
     private String description;
 
-    @Column(name = "quantity")
-    @NotNull
-    private double quantity;
-
     @ManyToOne
     @JoinColumn(name = "measurementUnit_id")
     @NotNull
     private MeasurementUnit measurementUnit;
 
-    @ManyToOne
-    @JoinColumn(name="shelve_id", nullable=false)
-    private Shelve shelve;
+    @ManyToMany(mappedBy = "products")
+    private List<Shelve> shelves = new ArrayList<>();;
 
-
-    @ManyToOne
-    @JoinColumn(name = "productForm_id" ,nullable=false)
-    @NotNull
-    private ProductForm productForm;
+    @ManyToMany(mappedBy = "products")
+    private List<ProductForm> productForms = new ArrayList<>();
 }

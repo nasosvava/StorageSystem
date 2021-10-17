@@ -1,8 +1,13 @@
 package com.example.storagesystem.service.impl;
 
+import com.example.storagesystem.domain.MeasurementUnit;
 import com.example.storagesystem.domain.Product;
+import com.example.storagesystem.domain.Shelve;
 import com.example.storagesystem.dto.ProductDTO;
+import com.example.storagesystem.repository.MeasurementUnitRepository;
 import com.example.storagesystem.repository.ProductRepository;
+import com.example.storagesystem.repository.ShelveRepository;
+import com.example.storagesystem.service.MeasurementUnitService;
 import com.example.storagesystem.service.ProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +21,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private MeasurementUnitRepository measurementUnitRepository;
+
+    @Autowired
+    private ShelveRepository shelveRepository;
 
     @Override
     public Product dtoToEntity(ProductDTO productDTO, Product product) {
@@ -48,6 +59,22 @@ public class ProductServiceImpl implements ProductService {
             product = new Product();
         }
         dtoToEntity(productDTO,product);
+        List<MeasurementUnit> measurementUnits= measurementUnitRepository.findAll();
+       for(MeasurementUnit measurementUnit : measurementUnits){
+           if (measurementUnit.getId() == productDTO.getMeasurementUnitDTO()){
+               product.setMeasurementUnit(measurementUnit);
+               break;
+           }
+       }
+       List<Shelve> shelves = shelveRepository.findAll();
+       for(Shelve shelve : shelves){
+           if (shelve.getId()==productDTO.getShelveDTO()){
+               product.setShelve(shelve);
+               break;
+           }
+       }
+
+
         productRepository.save(product);
         return product;
     }

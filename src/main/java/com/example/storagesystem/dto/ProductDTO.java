@@ -16,11 +16,9 @@ public class ProductDTO {
 
     private String description;
 
-    private double quantity;
-
     private Long measurementUnitDTO;
 
     private Long shelveDTO;
 
-    private Long productFormDTO;
+//    private Long productFormDTO;
 }

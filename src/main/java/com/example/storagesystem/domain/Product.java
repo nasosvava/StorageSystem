@@ -6,6 +6,8 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,7 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product implements Serializable{
 
 
@@ -22,20 +24,14 @@ public class Product implements Serializable{
     private Long id;
 
     @Column(name = "barcode")
-    @NotNull
     private String barcode;
 
     @Column(name = "description")
-    @NotNull
     private String description;
 
-    @Column(name = "quantity")
-    @NotNull
-    private double quantity;
 
     @ManyToOne
     @JoinColumn(name = "measurementUnit_id")
-    @NotNull
     private MeasurementUnit measurementUnit;
 
     @ManyToOne
@@ -43,8 +39,6 @@ public class Product implements Serializable{
     private Shelve shelve;
 
 
-    @ManyToOne
-    @JoinColumn(name = "productForm_id" ,nullable=false)
-    @NotNull
-    private ProductForm productForm;
+    @ManyToMany(mappedBy = "products")
+    private List<ProductForm> productForm =  new ArrayList<>();
 }

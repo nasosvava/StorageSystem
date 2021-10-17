@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -39,7 +40,11 @@ public class ProductForm implements Serializable{
     @NotNull
     private String receipts;
 
-    @OneToMany(mappedBy="productForm")
-    @NotNull
-    private List<Product> products;
+    @ManyToMany
+    @JoinTable(
+            name = "product_productForm",
+            joinColumns = {@JoinColumn(name ="productForm_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")}
+    )
+    private List<Product> products = new ArrayList<>();
 }

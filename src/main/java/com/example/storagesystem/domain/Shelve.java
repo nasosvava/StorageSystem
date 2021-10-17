@@ -34,5 +34,6 @@ public class Shelve implements Serializable {
 
 
     @OneToMany(mappedBy="shelve")
+    @JsonIgnore
     private List<Product> product;
 }

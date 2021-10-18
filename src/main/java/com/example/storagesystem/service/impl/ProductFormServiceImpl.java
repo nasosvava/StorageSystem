@@ -3,14 +3,17 @@ package com.example.storagesystem.service.impl;
 
 import com.example.storagesystem.domain.Product;
 import com.example.storagesystem.domain.ProductForm;
+import com.example.storagesystem.domain.Stock;
 import com.example.storagesystem.dto.ProductDTO;
 import com.example.storagesystem.dto.ProductFormDTO;
 import com.example.storagesystem.enumaration.FormCategory;
 import com.example.storagesystem.enumaration.TransactionCategory;
 import com.example.storagesystem.repository.ProductFormRepository;
 import com.example.storagesystem.repository.ProductRepository;
+import com.example.storagesystem.repository.StockRepository;
 import com.example.storagesystem.service.ProductFormService;
 import com.example.storagesystem.service.ProductService;
+import com.example.storagesystem.service.StockService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +31,12 @@ public class ProductFormServiceImpl implements ProductFormService {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    StockService stockService;
+
+    @Autowired
+    private StockRepository stockRepository;
 
     @Override
     public ProductForm dtoToEntity(ProductFormDTO productFormDTO, ProductForm productForm) {
@@ -55,10 +64,9 @@ public class ProductFormServiceImpl implements ProductFormService {
     public ProductFormDTO saveProductForm(ProductFormDTO productFormDTO) {
         ProductForm productForm;
         List<Product> allProducts = productRepository.findAll();
+        List <Stock> allStocks = stockRepository.findAll();
 
-        for(Product product : allProducts){
-            System.out.println(product.getBarcode());
-        }
+
 
         if (productFormDTO.getId() != null) {
             productForm = productFormRepository.getById(productFormDTO.getId());
@@ -67,6 +75,8 @@ public class ProductFormServiceImpl implements ProductFormService {
         }
 
         dtoToEntity(productFormDTO, productForm);
+
+
 //        for (Product product : allProducts) {
 //            for (int i = 0; i < productFormDTO.getProductsDTO().size(); i++) {
 //                if(product.getId()==productFormDTO.getProductsDTO().get(i)){

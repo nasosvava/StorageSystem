@@ -16,8 +16,8 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Entity
+@ToString
 @Table(name = "shelve")
 public class Shelve implements Serializable {
 
@@ -36,4 +36,5 @@ public class Shelve implements Serializable {
     @OneToMany(mappedBy="shelve")
     @JsonIgnore
     private List<Product> product;
+
 }

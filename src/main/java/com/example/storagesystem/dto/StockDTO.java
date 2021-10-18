@@ -1,29 +1,21 @@
 package com.example.storagesystem.dto;
 
-
-import com.example.storagesystem.domain.Storage;
 import lombok.*;
 
-
-
 import java.util.List;
-
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class ShelveDTO {
+public class StockDTO {
 
     private Long id;
 
-    private String name;
+    private Long product;
 
-    private Long storage;
+    private Long productForm;
 
-    private List<ProductDTO> productDTO;
-
-
+    private double quantity;
 }

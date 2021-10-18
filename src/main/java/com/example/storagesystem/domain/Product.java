@@ -1,6 +1,7 @@
 package com.example.storagesystem.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,16 +30,21 @@ public class Product implements Serializable{
     @Column(name = "description")
     private String description;
 
+    @Column(name = "quantity")
+    private double maxQuantity;
 
     @ManyToOne
     @JoinColumn(name = "measurementUnit_id")
     private MeasurementUnit measurementUnit;
 
+
     @ManyToOne
     @JoinColumn(name="shelve_id", nullable=false)
     private Shelve shelve;
 
+    @OneToMany(mappedBy = "product")
+    private List<Stock> stock;
 
-    @ManyToMany(mappedBy = "products")
-    private List<ProductForm> productForm =  new ArrayList<>();
+
+
 }

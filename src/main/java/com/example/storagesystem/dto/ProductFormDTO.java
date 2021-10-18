@@ -1,35 +1,36 @@
 package com.example.storagesystem.dto;
 
 
-import com.example.storagesystem.domain.Product;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
+
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class ProductFormDTO {
 
     private Long id;
 
     private String formCategory;
 
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date importDate;
-
-    private double quantity;
 
     private String description;
 
-    private String transactionCategory;
+    private String receipts;
 
     private boolean isCanceled;
 
-    private List<ProductDTO> productsDTO;
+    private double quantity;
+
+    private List<Long> stock;
+
 }

@@ -5,6 +5,8 @@ import com.example.storagesystem.domain.Product;
 import com.example.storagesystem.domain.ProductForm;
 import com.example.storagesystem.dto.ProductDTO;
 import com.example.storagesystem.dto.ProductFormDTO;
+import com.example.storagesystem.enumaration.FormCategory;
+import com.example.storagesystem.enumaration.TransactionCategory;
 import com.example.storagesystem.repository.ProductFormRepository;
 import com.example.storagesystem.repository.ProductRepository;
 import com.example.storagesystem.service.ProductFormService;
@@ -45,31 +47,38 @@ public class ProductFormServiceImpl implements ProductFormService {
 
         if(productFormDTO == null){
             productFormDTO = new ProductFormDTO();}
-
         BeanUtils.copyProperties(productForm, productFormDTO);
-
         return productFormDTO;
     }
 
     @Override
-    public ProductForm saveProductForm(ProductFormDTO productFormDTO) {
+    public ProductFormDTO saveProductForm(ProductFormDTO productFormDTO) {
         ProductForm productForm;
-        List<Product> productIn = new ArrayList<>();
-        Product product = new Product();
+        List<Product> allProducts = productRepository.findAll();
+
+        for(Product product : allProducts){
+            System.out.println(product.getBarcode());
+        }
+
         if (productFormDTO.getId() != null) {
             productForm = productFormRepository.getById(productFormDTO.getId());
         } else {
             productForm = new ProductForm();
         }
-        dtoToEntity(productFormDTO, productForm);
 
-        for (ProductDTO productDTO : productFormDTO.getProductsDTO()) {
-            productService.saveProduct(productDTO);
-            productService.dtoToEntity(productDTO, product);
-            productIn.add(product);
-        }
+        dtoToEntity(productFormDTO, productForm);
+//        for (Product product : allProducts) {
+//            for (int i = 0; i < productFormDTO.getProductsDTO().size(); i++) {
+//                if(product.getId()==productFormDTO.getProductsDTO().get(i)){
+//                    productForm.getProducts().add(product);
+//                }
+//            }
+//        }
+
+        productForm.setFormCategory(FormCategory.valueOf(productFormDTO.getFormCategory()));
+        productForm.setReceipts(TransactionCategory.valueOf(productFormDTO.getReceipts()));
         productFormRepository.save(productForm);
-        return productForm;
+        return null;
     }
 
     @Override

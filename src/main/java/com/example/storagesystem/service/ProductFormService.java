@@ -11,7 +11,7 @@ public interface ProductFormService {
 
     ProductFormDTO entityToDto(ProductFormDTO productFormDTO, ProductForm productForm);
 
-    ProductForm saveProductForm(ProductFormDTO productFormDTO);
+    ProductFormDTO saveProductForm(ProductFormDTO productFormDTO);
 
     List<ProductFormDTO> findAllForms();
 

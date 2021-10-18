@@ -1,5 +1,8 @@
 package com.example.storagesystem.domain;
 import com.example.storagesystem.enumaration.FormCategory;
+import com.example.storagesystem.enumaration.TransactionCategory;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,26 +28,25 @@ public class ProductForm implements Serializable{
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "form_type",nullable = false)
+    @Column(name = "form_category")
     private FormCategory formCategory;
 
     @Column(name = "import_date")
-    @NotNull
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
     private Date importDate;
 
+    @Column(name = "quantity")
+    private double quantity;
+
     @Column(name = "description")
-    @NotNull
     private String description;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "receipts")
-    @NotNull
-    private String receipts;
+    private TransactionCategory receipts;
 
-    @ManyToMany
-    @JoinTable(
-            name = "product_productForm",
-            joinColumns = {@JoinColumn(name ="productForm_id")},
-            inverseJoinColumns = {@JoinColumn(name = "product_id")}
-    )
-    private List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "productForm")
+    private List<Stock> stock;
+
+
 }

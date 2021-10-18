@@ -22,6 +22,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @Entity
+@ToString
 @Table(name = "storage")
 public class Storage implements Serializable {
 
@@ -35,14 +36,7 @@ public class Storage implements Serializable {
 
     @OneToMany(mappedBy = "storage")
     @JsonIgnore
-    private List<Shelve> shelves = new ArrayList<>();
+    private List<Shelve> shelves;
 
-    @Override
-    public String toString() {
-        return "Storage{" +
-                "id=" + id +
-                ", storage_description='" + storage_description + '\'' +
-                ", shelves=" + shelves +
-                '}';
-    }
+
 }

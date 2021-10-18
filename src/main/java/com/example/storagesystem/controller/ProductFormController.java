@@ -12,7 +12,7 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping(path = "/producttForm")
+@RequestMapping(path = "/productForm")
 @CrossOrigin("http://localhost:8080")
 public class ProductFormController {
 
@@ -27,7 +27,7 @@ public class ProductFormController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createProductForm(@RequestBody ProductFormDTO productFormDTO){
-        ProductForm productForm = productFormService.saveProductForm(productFormDTO);
+        ProductFormDTO productForm = productFormService.saveProductForm(productFormDTO);
         return new ResponseEntity<>(productForm,OK);
     }
 

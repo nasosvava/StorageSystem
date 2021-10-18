@@ -10,9 +10,7 @@ public enum FormCategory {
         this.formCategory = formCategory;
     }
 
-    public String getFormCategory() {
-        return formCategory;
-    }
+    public String getFormCategory() {return formCategory;}
 
     public static FormCategory[] getAll(){
         return  FormCategory.values();

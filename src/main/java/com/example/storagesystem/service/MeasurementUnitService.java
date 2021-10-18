@@ -1,9 +1,7 @@
 package com.example.storagesystem.service;
 
 import com.example.storagesystem.domain.MeasurementUnit;
-import com.example.storagesystem.domain.Shelve;
 import com.example.storagesystem.dto.MeasurementUnitDTO;
-import com.example.storagesystem.dto.ShelveDTO;
 
 import java.util.List;
 

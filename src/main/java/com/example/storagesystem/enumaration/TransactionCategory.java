@@ -1,7 +1,8 @@
 package com.example.storagesystem.enumaration;
 
 public enum TransactionCategory {
-    RECEIPTS("receiver"),DELIVERIES("deliverers");
+    RECEIPTS("receiver"),
+    DELIVERIES("deliverers");
 
     private String transactionCategory;
 

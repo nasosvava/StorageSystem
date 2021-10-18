@@ -14,8 +14,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @ToString
+@Entity
 @Table(name = "measurementUnit")
 public class MeasurementUnit implements Serializable {
 
@@ -30,4 +30,6 @@ public class MeasurementUnit implements Serializable {
     @OneToMany(mappedBy = "measurementUnit")
     @JsonIgnore
     private List<Product> products;
+
+
 }

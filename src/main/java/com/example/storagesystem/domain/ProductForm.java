@@ -1,6 +1,5 @@
 package com.example.storagesystem.domain;
 import com.example.storagesystem.enumaration.FormCategory;
-import com.example.storagesystem.enumaration.TransactionCategory;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,10 +28,6 @@ public class ProductForm implements Serializable{
     @Column(name = "form_type",nullable = false)
     private FormCategory formCategory;
 
-    @Column(name = "quantity")
-    @NotNull
-    private double quantity;
-
     @Column(name = "import_date")
     @NotNull
     private Date importDate;
@@ -41,21 +36,15 @@ public class ProductForm implements Serializable{
     @NotNull
     private String description;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "transaction_category", nullable = false)
+    @Column(name = "receipts")
     @NotNull
-    private TransactionCategory transactionCategory;
-
-    @Column(name = "cancelForm")
-    @NotNull
-    private boolean isCanceled;
+    private String receipts;
 
     @ManyToMany
     @JoinTable(
-            name = "productForm_product",
-            joinColumns = {@JoinColumn(name = "productForm_id")},
-            inverseJoinColumns = {@JoinColumn (name = "product_id")}
+            name = "product_productForm",
+            joinColumns = {@JoinColumn(name ="productForm_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")}
     )
     private List<Product> products = new ArrayList<>();
 }
-

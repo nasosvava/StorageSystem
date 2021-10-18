@@ -1,7 +1,6 @@
 package com.example.storagesystem.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product implements Serializable{
 
 
@@ -25,21 +24,21 @@ public class Product implements Serializable{
     private Long id;
 
     @Column(name = "barcode")
-    @NotNull
     private String barcode;
 
     @Column(name = "description")
-    @NotNull
     private String description;
+
 
     @ManyToOne
     @JoinColumn(name = "measurementUnit_id")
-    @NotNull
     private MeasurementUnit measurementUnit;
 
-    @ManyToMany(mappedBy = "products")
-    private List<Shelve> shelves = new ArrayList<>();;
+    @ManyToOne
+    @JoinColumn(name="shelve_id", nullable=false)
+    private Shelve shelve;
+
 
     @ManyToMany(mappedBy = "products")
-    private List<ProductForm> productForms = new ArrayList<>();
+    private List<ProductForm> productForm =  new ArrayList<>();
 }

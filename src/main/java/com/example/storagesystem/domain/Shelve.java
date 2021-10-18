@@ -33,11 +33,7 @@ public class Shelve implements Serializable {
     private Storage storage;
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "shelve_product",
-            joinColumns = {@JoinColumn(name = "shelve_id")},
-            inverseJoinColumns = {@JoinColumn(name = "product_id")}
-    )
-    private List<Product> products= new ArrayList<>();
+    @OneToMany(mappedBy="shelve")
+    @JsonIgnore
+    private List<Product> product;
 }

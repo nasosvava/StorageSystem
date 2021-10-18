@@ -2,9 +2,6 @@ package com.example.storagesystem.dto;
 
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 @Getter
 @Setter
@@ -19,9 +16,9 @@ public class ProductDTO {
 
     private String description;
 
-    private MeasurementUnitDTO measurementUnitDTO;
+    private Long measurementUnitDTO;
 
-    private List<ShelveDTO> shelveDTO = new ArrayList<>();
+    private Long shelveDTO;
 
-//    private List<ProductDTO> productFormDTO = new ArrayList<>();
+//    private Long productFormDTO;
 }

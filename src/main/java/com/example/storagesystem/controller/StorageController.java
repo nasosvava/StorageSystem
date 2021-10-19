@@ -26,15 +26,12 @@ public class StorageController {
 
     @GetMapping("/getAll")
     public ResponseEntity<?> getAllStorages(){
-//        List<StorageDTO> storages= storageService.findAllStorages();
         return new ResponseEntity<>(storageService.findAllStorages(),OK);
     }
 
     @PostMapping("/create")
     public ResponseEntity<?> createStorage(@RequestBody StorageDTO storageDTO){
-        Storage storage = storageService.saveStorage(storageDTO);
-
-        return new ResponseEntity<>(storage,OK);
+        return new ResponseEntity<>( storageService.saveStorage(storageDTO),OK);
     }
 
     @GetMapping("/findById/{id}")

@@ -23,14 +23,13 @@ public class ProductController {
 
     @GetMapping("/getAll")
     public ResponseEntity<?> getAllProducts(){
-        List<ProductDTO> productDTO = productService.findAllProducts();
-        return new ResponseEntity<>(productDTO,OK);
+
+        return new ResponseEntity<>(productService.findAllProducts(),OK);
     }
 
     @PostMapping("/create")
     public ResponseEntity<?> createProduct(@RequestBody ProductDTO productDTO){
-        Product product = productService.saveProduct(productDTO);
-        return new ResponseEntity<>(product,OK);
+        return new ResponseEntity<>(productService.saveProduct(productDTO),OK);
     }
 
     @GetMapping("/findById/{id}")

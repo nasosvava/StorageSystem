@@ -21,14 +21,12 @@ public class ProductFormController {
 
     @GetMapping("/getAll")
     public ResponseEntity<?> getAllProductForms(){
-        List<ProductFormDTO> productImportForms= productFormService.findAllForms();
-        return new ResponseEntity<>(productImportForms,OK);
+        return new ResponseEntity<>(productFormService.findAllForms(),OK);
     }
 
     @PostMapping("/create")
     public ResponseEntity<?> createProductForm(@RequestBody ProductFormDTO productFormDTO){
-        ProductFormDTO productForm = productFormService.saveProductForm(productFormDTO);
-        return new ResponseEntity<>(productForm,OK);
+        return new ResponseEntity<>(productFormService.saveProductForm(productFormDTO),OK);
     }
 
     @GetMapping("/findById/{id}")

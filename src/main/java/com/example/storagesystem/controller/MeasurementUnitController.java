@@ -22,14 +22,12 @@ public class MeasurementUnitController {
 
     @GetMapping("/getAll")
     public ResponseEntity<?> getAllMeasurementUnits(){
-        List<MeasurementUnitDTO> measurementUnits= measurementUnitService.findAllMeasurementUnits();
-        return new ResponseEntity<>(measurementUnits,OK);
+        return new ResponseEntity<>(measurementUnitService.findAllMeasurementUnits(),OK);
     }
 
     @PostMapping("/create")
     public ResponseEntity<?> createMeasurementUnit(@RequestBody MeasurementUnitDTO measurementUnitDTO){
-        MeasurementUnit measurementUnit = measurementUnitService.saveMeasurementUnit(measurementUnitDTO);
-        return new ResponseEntity<>(measurementUnit,OK);
+        return new ResponseEntity<>(measurementUnitService.saveMeasurementUnit(measurementUnitDTO),OK);
     }
 
     @GetMapping("/findById/{id}")

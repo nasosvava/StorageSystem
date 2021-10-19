@@ -21,14 +21,12 @@ public class ShelveController {
 
     @GetMapping("/getAll")
     public ResponseEntity<?> getAllShelves(){
-        List<ShelveDTO> shelves= shelveService.findAllShelves();
-        return new ResponseEntity<>(shelves,OK);
+        return new ResponseEntity<>(shelveService.findAllShelves(),OK);
     }
 
     @PostMapping("/create")
     public ResponseEntity<?> createShelve(@RequestBody ShelveDTO shelveDTO){
-        Shelve shelve = shelveService.saveShelve(shelveDTO);
-        return new ResponseEntity<>(shelve,OK);
+        return new ResponseEntity<>(shelveService.saveShelve(shelveDTO),OK);
     }
 
 

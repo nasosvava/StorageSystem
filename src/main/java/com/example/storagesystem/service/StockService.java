@@ -5,6 +5,7 @@ import com.example.storagesystem.domain.Stock;
 import com.example.storagesystem.dto.ShelveDTO;
 import com.example.storagesystem.dto.StockDTO;
 
+import java.util.Date;
 import java.util.List;
 
 public interface StockService {
@@ -18,4 +19,6 @@ public interface StockService {
     List<StockDTO> findAllStock();
 
     StockDTO findById(Long id);
+
+    double getProductQuantityForSpecificDate (Long productId , Date date);
 }

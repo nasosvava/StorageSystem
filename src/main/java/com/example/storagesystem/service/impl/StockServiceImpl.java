@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -87,5 +88,13 @@ public class StockServiceImpl implements StockService {
         StockDTO stockDTO = new StockDTO();
         entityToDto(stockDTO,stock);
         return stockDTO;
+    }
+
+    @Override
+    public double getProductQuantityForSpecificDate(Long productId, Date date) {
+//        Product product = productRepository.findById(productId).orElse(null);
+//        ProductForm productForm = productFormRepository.findById(prId).orElse(null);
+//        System.out.println(productForm.getImportDate());
+        return stockRepository.findProductQuantityForSpecificDate(productId,date);
     }
 }

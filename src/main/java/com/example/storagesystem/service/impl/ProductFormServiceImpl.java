@@ -63,41 +63,30 @@ public class ProductFormServiceImpl implements ProductFormService {
     @Override
     public ProductFormDTO saveProductForm(ProductFormDTO productFormDTO) {
         ProductForm productForm;
+
         List<Product> allProducts = productRepository.findAll();
         List <Stock> allStocks = stockRepository.findAll();
-
-
-
         if (productFormDTO.getId() != null) {
             productForm = productFormRepository.getById(productFormDTO.getId());
         } else {
             productForm = new ProductForm();
         }
-
         dtoToEntity(productFormDTO, productForm);
-
-
-//        for (Product product : allProducts) {
-//            for (int i = 0; i < productFormDTO.getProductsDTO().size(); i++) {
-//                if(product.getId()==productFormDTO.getProductsDTO().get(i)){
-//                    productForm.getProducts().add(product);
-//                }
-//            }
-//        }
-
         productForm.setFormCategory(FormCategory.valueOf(productFormDTO.getFormCategory()));
         productForm.setReceipts(TransactionCategory.valueOf(productFormDTO.getReceipts()));
         productFormRepository.save(productForm);
         return null;
     }
 
+
+
     @Override
     public List<ProductFormDTO> findAllForms() {
         List<ProductFormDTO> allProductFormDTO = new ArrayList<>();
         List<ProductForm> allProductForm = productFormRepository.findAll();
-        for (int i = 0; i < allProductForm.size(); i++) {
+        for (ProductForm productForm : allProductForm) {
             ProductFormDTO productFormDTO = new ProductFormDTO();
-            allProductFormDTO.add(entityToDto(productFormDTO, allProductForm.get(i)));
+            allProductFormDTO.add(entityToDto(productFormDTO, productForm));
         }
         return allProductFormDTO;
     }

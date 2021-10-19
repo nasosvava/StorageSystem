@@ -31,6 +31,6 @@ public class ProductFormDTO {
 
     private double quantity;
 
-    private List<Long> stock;
+    private List<StockDTO> stock;
 
 }

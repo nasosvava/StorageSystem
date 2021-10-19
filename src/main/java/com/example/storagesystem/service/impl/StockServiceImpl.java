@@ -14,6 +14,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -62,19 +63,29 @@ public class StockServiceImpl implements StockService {
         }
         if(productForm.getFormCategory().equals(FormCategory.IMPORT_FORMS)){product.setMaxQuantity(product.getMaxQuantity()+stockDTO.getQuantity());}
         else{product.setMaxQuantity(product.getMaxQuantity()-stockDTO.getQuantity());}
-
         dtoToEntity(stockDTO,stock);
+        stock.setProduct(product);
+        stock.setProductForm(productForm);
         stockRepository.save(stock);
         return null;
     }
 
     @Override
     public List<StockDTO> findAllStock() {
-        return null;
+        List<StockDTO> allStockDTO = new ArrayList<>();
+        List<Stock> allStock = stockRepository.findAll();
+        for(Stock stock:allStock){
+            StockDTO stockDTO  = new StockDTO();
+            allStockDTO.add(entityToDto(stockDTO,stock));
+        }
+        return allStockDTO;
     }
 
     @Override
     public StockDTO findById(Long id) {
-        return null;
+        Stock stock = stockRepository.findById(id).orElse(null);
+        StockDTO stockDTO = new StockDTO();
+        entityToDto(stockDTO,stock);
+        return stockDTO;
     }
 }

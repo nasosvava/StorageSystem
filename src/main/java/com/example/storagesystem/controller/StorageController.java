@@ -26,8 +26,8 @@ public class StorageController {
 
     @GetMapping("/getAll")
     public ResponseEntity<?> getAllStorages(){
-        List<StorageDTO> storages= storageService.findAllStorages();
-        return new ResponseEntity<>(storages,OK);
+//        List<StorageDTO> storages= storageService.findAllStorages();
+        return new ResponseEntity<>(storageService.findAllStorages(),OK);
     }
 
     @PostMapping("/create")

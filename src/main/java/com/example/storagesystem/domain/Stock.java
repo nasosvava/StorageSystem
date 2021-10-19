@@ -22,6 +22,8 @@ public class Stock implements Serializable {
     @Column(name="quantity")
     private double quantity;
 
+
+
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;

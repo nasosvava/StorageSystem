@@ -35,7 +35,6 @@ public class Storage implements Serializable {
 
 
     @OneToMany(mappedBy = "storage")
-    @JsonIgnore
     private List<Shelve> shelves;
 
 

@@ -14,7 +14,7 @@ public interface StockService {
 
     StockDTO entityToDto(StockDTO stockDTO, Stock stock);
 
-    Stock saveStock(StockDTO StockDTO);
+    StockDTO saveStock(StockDTO StockDTO);
 
     List<StockDTO> findAllStock();
 

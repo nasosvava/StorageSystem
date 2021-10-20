@@ -11,7 +11,7 @@ public interface MeasurementUnitService {
 
     MeasurementUnitDTO entityToDto(MeasurementUnitDTO measurementUnitDTO, MeasurementUnit measurementUnit);
 
-    MeasurementUnit saveMeasurementUnit(MeasurementUnitDTO measurementUnitDTO);
+    MeasurementUnitDTO saveMeasurementUnit(MeasurementUnitDTO measurementUnitDTO);
 
     List<MeasurementUnitDTO> findAllMeasurementUnits();
 

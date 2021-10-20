@@ -43,7 +43,7 @@ public class ShelveServiceImpl implements ShelveService {
     }
 
     @Override
-    public Shelve saveShelve(ShelveDTO shelveDTO) {
+    public ShelveDTO saveShelve(ShelveDTO shelveDTO) {
         Shelve shelve;
         if (shelveDTO.getId() != null){
             shelve = shelveRepository.getById(shelveDTO.getId());
@@ -52,7 +52,7 @@ public class ShelveServiceImpl implements ShelveService {
         }
         dtoToEntity(shelveDTO,shelve);
         shelveRepository.save(shelve);
-        return  shelve;
+        return  shelveDTO;
 
 
     }

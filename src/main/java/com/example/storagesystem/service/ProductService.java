@@ -11,7 +11,7 @@ public interface ProductService {
 
     ProductDTO entityToDto(ProductDTO productDTO,Product product);
 
-    Product saveProduct(ProductDTO productDTO);
+    ProductDTO saveProduct(ProductDTO productDTO);
 
     List<ProductDTO> findAllProducts();
 

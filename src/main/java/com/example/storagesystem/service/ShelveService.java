@@ -11,7 +11,7 @@ public interface ShelveService {
 
     ShelveDTO entityToDto(ShelveDTO shelveDTO, Shelve shelve);
 
-    Shelve saveShelve(ShelveDTO shelveDTO);
+    ShelveDTO saveShelve(ShelveDTO shelveDTO);
 
     List<ShelveDTO> findAllShelves();
 

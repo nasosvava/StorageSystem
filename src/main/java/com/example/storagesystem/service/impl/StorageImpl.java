@@ -50,7 +50,7 @@ public class StorageImpl implements StorageService {
     }
 
     @Override
-    public Storage saveStorage(StorageDTO storageDTO) {
+    public StorageDTO saveStorage(StorageDTO storageDTO) {
         Storage storage;
         if(storageDTO.getId()!=null){
             storage = storageRepository.getById(storageDTO.getId());
@@ -69,7 +69,7 @@ public class StorageImpl implements StorageService {
             shelveRepository.save(shelve);
             storage.getShelves().add(shelve);
         }
-        return  storage;
+        return  storageDTO;
     }
 
     @Override

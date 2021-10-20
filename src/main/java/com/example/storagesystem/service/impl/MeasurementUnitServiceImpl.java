@@ -43,7 +43,7 @@ public class MeasurementUnitServiceImpl implements MeasurementUnitService {
     }
 
     @Override
-    public MeasurementUnit saveMeasurementUnit(MeasurementUnitDTO measurementUnitDTO) {
+    public MeasurementUnitDTO saveMeasurementUnit(MeasurementUnitDTO measurementUnitDTO) {
         MeasurementUnit measurementUnit;
         if(measurementUnitDTO.getId() != null){
             measurementUnit = measurementUnitRepository.getById(measurementUnitDTO.getId());
@@ -52,7 +52,7 @@ public class MeasurementUnitServiceImpl implements MeasurementUnitService {
         }
         dtoToEntity(measurementUnitDTO,measurementUnit);
         measurementUnitRepository.save(measurementUnit);
-        return measurementUnit;
+        return measurementUnitDTO;
     }
 
     @Override

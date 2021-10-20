@@ -2,11 +2,13 @@ package com.example.storagesystem.service.impl;
 
 import com.example.storagesystem.domain.MeasurementUnit;
 import com.example.storagesystem.domain.Product;
+import com.example.storagesystem.domain.Shelve;
 import com.example.storagesystem.dto.ProductDTO;
 import com.example.storagesystem.repository.MeasurementUnitRepository;
 import com.example.storagesystem.repository.ProductRepository;
 import com.example.storagesystem.repository.ShelveRepository;
 import com.example.storagesystem.service.ProductService;
+import com.example.storagesystem.service.ShelveService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +64,12 @@ public class ProductServiceImpl implements ProductService {
            if (measurementUnit.getName().equals(productDTO.getMeasurementUnitDTO())){
                product.setMeasurementUnit(measurementUnit);
                break;
+           }
+       }
+       List<Shelve> shelves = shelveRepository.findAll();
+       for (Shelve shelve : shelves){
+           if(shelve.getId() == productDTO.getShelveDTO()){
+               product.setShelve(shelve);
            }
        }
         productRepository.save(product);

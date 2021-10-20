@@ -37,8 +37,8 @@ public class Product implements Serializable{
     private double maxQuantity;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "measurementUnit_id")
+    @NotNull
     private MeasurementUnit measurementUnit;
 
 

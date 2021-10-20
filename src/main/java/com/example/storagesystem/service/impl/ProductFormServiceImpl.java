@@ -61,7 +61,7 @@ public class ProductFormServiceImpl implements ProductFormService {
     }
 
     @Override
-    public ProductFormDTO saveProductForm(ProductFormDTO productFormDTO) {
+    public ProductForm saveProductForm(ProductFormDTO productFormDTO) {
         ProductForm productForm;
 
         List<Product> allProducts = productRepository.findAll();
@@ -75,7 +75,7 @@ public class ProductFormServiceImpl implements ProductFormService {
         productForm.setFormCategory(FormCategory.valueOf(productFormDTO.getFormCategory()));
         productForm.setReceipts(TransactionCategory.valueOf(productFormDTO.getReceipts()));
         productFormRepository.save(productForm);
-        return null;
+        return productForm;
     }
 
 

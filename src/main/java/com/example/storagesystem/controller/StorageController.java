@@ -29,7 +29,7 @@ public class StorageController {
         return new ResponseEntity<>(storageService.findAllStorages(),OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/save")
     public ResponseEntity<?> createStorage(@RequestBody StorageDTO storageDTO){
         return new ResponseEntity<>( storageService.saveStorage(storageDTO),OK);
     }

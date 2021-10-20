@@ -24,7 +24,7 @@ public class ShelveController {
         return new ResponseEntity<>(shelveService.findAllShelves(),OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/save")
     public ResponseEntity<?> createShelve(@RequestBody ShelveDTO shelveDTO){
         return new ResponseEntity<>(shelveService.saveShelve(shelveDTO),OK);
     }

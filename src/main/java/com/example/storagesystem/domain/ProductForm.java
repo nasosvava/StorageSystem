@@ -1,6 +1,7 @@
 package com.example.storagesystem.domain;
 import com.example.storagesystem.enumaration.FormCategory;
 import com.example.storagesystem.enumaration.TransactionCategory;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -21,7 +22,7 @@ import java.util.Set;
 @Entity
 @ToString
 @Table(name = "productForm")
-public class ProductForm implements Serializable{
+public class ProductForm implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +33,7 @@ public class ProductForm implements Serializable{
     private FormCategory formCategory;
 
     @Column(name = "import_date")
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date importDate;
 
     @Column(name = "quantity")
@@ -46,7 +47,6 @@ public class ProductForm implements Serializable{
     private TransactionCategory receipts;
 
     @OneToMany(mappedBy = "productForm")
+    @JsonBackReference
     private List<Stock> stock;
-
-
 }

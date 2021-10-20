@@ -50,7 +50,7 @@ public class StorageImpl implements StorageService {
     }
 
     @Override
-    public StorageDTO saveStorage(StorageDTO storageDTO) {
+    public Storage saveStorage(StorageDTO storageDTO) {
         Storage storage;
         if(storageDTO.getId()!=null){
             storage = storageRepository.getById(storageDTO.getId());
@@ -61,15 +61,26 @@ public class StorageImpl implements StorageService {
 
         dtoToEntity(storageDTO,storage);
         storageRepository.save(storage);
+        List<Shelve> shelf = new ArrayList<>();
         for (ShelveDTO shelveDTO : storageDTO.getShelvesDTO()){
             shelveDTO.setStorage(storage.getId());
             Shelve shelve = new Shelve();
             shelveService.dtoToEntity(shelveDTO,shelve);
+            System.out.println(shelve.getName());
+
+
             shelve.setStorage(storageRepository.getById(storage.getId()));
+
             shelveRepository.save(shelve);
-            storage.getShelves().add(shelve);
+            shelf.add(shelve);
+            System.out.println(shelve.getId());
+
+            storage.setShelves(shelf);
+            storageRepository.save(storage);
+
+            storage.getShelves();
         }
-        return  storageDTO;
+        return  storage;
     }
 
     @Override

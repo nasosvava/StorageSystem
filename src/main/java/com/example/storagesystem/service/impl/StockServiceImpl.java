@@ -53,7 +53,7 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public StockDTO saveStock(StockDTO stockDTO) {
+    public Stock saveStock(StockDTO stockDTO) {
         Product product = productRepository.findById(stockDTO.getProduct()).orElse(null);
         ProductForm productForm = productFormRepository.findById(stockDTO.getProductForm()).orElse(null);
         Stock stock ;
@@ -68,7 +68,7 @@ public class StockServiceImpl implements StockService {
         stock.setProduct(product);
         stock.setProductForm(productForm);
         stockRepository.save(stock);
-        return stockDTO;
+        return stock;
     }
 
     @Override

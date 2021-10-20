@@ -1,5 +1,7 @@
 package com.example.storagesystem.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,10 +28,12 @@ public class Stock implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @JsonManagedReference
     private Product product;
 
     @ManyToOne
     @JoinColumn(name = "productForm_id")
+    @JsonManagedReference
     private ProductForm productForm;
 
 

@@ -1,7 +1,9 @@
 package com.example.storagesystem.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,11 +29,13 @@ public class Shelve implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "storage_id")
+    @JsonBackReference
     private Storage storage;
 
 
     @OneToMany(mappedBy="shelve")
     @JsonIgnore
+    @JsonManagedReference
     private List<Product> product;
 
 }

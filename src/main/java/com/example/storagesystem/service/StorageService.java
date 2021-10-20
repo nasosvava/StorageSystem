@@ -12,7 +12,7 @@ public interface StorageService {
 
     StorageDTO entityToDto(StorageDTO storageDTO,Storage storage);
 
-    StorageDTO saveStorage(StorageDTO storageDTO);
+    Storage saveStorage(StorageDTO storageDTO);
 
     List<StorageDTO> findAllStorages();
 

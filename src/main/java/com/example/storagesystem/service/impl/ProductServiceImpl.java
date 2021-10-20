@@ -51,7 +51,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDTO saveProduct(ProductDTO productDTO) {
+    public Product saveProduct(ProductDTO productDTO) {
         Product product;
         if(productDTO.getId() != null){
             product = productRepository.getById(productDTO.getId());
@@ -76,7 +76,7 @@ public class ProductServiceImpl implements ProductService {
 
 
         productRepository.save(product);
-        return productDTO;
+        return product;
     }
 
     @Override

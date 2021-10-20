@@ -1,6 +1,7 @@
 package com.example.storagesystem.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -39,10 +40,12 @@ public class Product implements Serializable{
 
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name="shelve_id", nullable=false)
     private Shelve shelve;
 
     @OneToMany(mappedBy = "product")
+    @JsonBackReference
     private List<Stock> stock;
 
 

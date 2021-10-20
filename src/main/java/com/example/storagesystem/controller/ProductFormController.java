@@ -24,7 +24,7 @@ public class ProductFormController {
         return new ResponseEntity<>(productFormService.findAllForms(),OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/save")
     public ResponseEntity<?> createProductForm(@RequestBody ProductFormDTO productFormDTO){
         return new ResponseEntity<>(productFormService.saveProductForm(productFormDTO),OK);
     }

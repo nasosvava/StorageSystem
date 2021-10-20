@@ -25,7 +25,7 @@ public class MeasurementUnitController {
         return new ResponseEntity<>(measurementUnitService.findAllMeasurementUnits(),OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/save")
     public ResponseEntity<?> createMeasurementUnit(@RequestBody MeasurementUnitDTO measurementUnitDTO){
         return new ResponseEntity<>(measurementUnitService.saveMeasurementUnit(measurementUnitDTO),OK);
     }

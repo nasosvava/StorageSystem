@@ -20,7 +20,7 @@ public class StockController {
     @Autowired
     private StockService stockService;
 
-    @PostMapping("/create")
+    @PostMapping("/save")
     public ResponseEntity<?> createStockForm(@RequestBody StockDTO stockDTO){
         return new ResponseEntity<>(stockService.saveStock(stockDTO),OK);
     }

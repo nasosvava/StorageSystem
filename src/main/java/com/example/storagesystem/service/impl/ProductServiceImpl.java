@@ -10,7 +10,6 @@ import com.example.storagesystem.repository.ProductRepository;
 import com.example.storagesystem.repository.ShelveRepository;
 import com.example.storagesystem.repository.StockRepository;
 import com.example.storagesystem.service.ProductService;
-import com.example.storagesystem.service.ShelveService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -97,8 +96,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(Long id) {
-    Stock stock = stockRepository.findByProduct_Id(id);
-    Product product = productRepository.findById(id).orElse(null);
+     Stock stock = stockRepository.findByProduct_id(id);
+        stockRepository.deleteById(stock.getId());
+     productRepository.deleteById(id);
     }
 
     @Override

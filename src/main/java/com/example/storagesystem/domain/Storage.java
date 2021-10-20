@@ -31,6 +31,7 @@ public class Storage implements Serializable {
     private Long id;
 
     @Column(name = "description")
+    @NotNull
     private String storage_description;
 
 

@@ -30,20 +30,24 @@ public class ProductForm implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "form_category")
+    @NotNull
     private FormCategory formCategory;
 
     @Column(name = "import_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @NotNull
     private Date importDate;
 
-    @Column(name = "quantity")
-    private double quantity;
+//    @Column(name = "quantity")
+//    private double quantity;
 
     @Column(name = "description")
+    @NotNull
     private String description;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "receipts")
+    @NotNull
     private TransactionCategory receipts;
 
     @OneToMany(mappedBy = "productForm")

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 
@@ -22,6 +23,7 @@ public class Stock implements Serializable {
     private Long id;
 
     @Column(name="quantity")
+    @NotNull
     private double quantity;
 
 

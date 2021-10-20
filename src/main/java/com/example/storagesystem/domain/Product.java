@@ -26,15 +26,18 @@ public class Product implements Serializable{
     private Long id;
 
     @Column(name = "barcode")
+    @NotNull
     private String barcode;
 
     @Column(name = "description")
+    @NotNull
     private String description;
 
     @Column(name = "quantity")
     private double maxQuantity;
 
     @ManyToOne
+    @NotNull
     @JoinColumn(name = "measurementUnit_id")
     private MeasurementUnit measurementUnit;
 

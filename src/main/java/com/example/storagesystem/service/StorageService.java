@@ -16,7 +16,7 @@ public interface StorageService {
 
     List<StorageDTO> findAllStorages();
 
-    void deleteStorage(Long id);
+    String deleteStorage(Long id);
 
     Long numberOfShelves();
 

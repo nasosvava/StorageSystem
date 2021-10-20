@@ -21,4 +21,6 @@ public interface StockService {
     StockDTO findById(Long id);
 
     double getProductQuantityForSpecificDate (Long productId , Date date);
+
+
 }

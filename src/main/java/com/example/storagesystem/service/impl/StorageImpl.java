@@ -106,8 +106,14 @@ public class StorageImpl implements StorageService {
 
 
     @Override
-    public void deleteStorage(Long id) {
-    storageRepository.deleteById(id);
+    public String deleteStorage(Long id) {
+        Storage storage = storageRepository.findById(id).orElse(null);
+        if(storage.getShelves().equals(null)){
+        storageRepository.deleteById(id);
+        return "Storage deleted successfully";
+        }else {
+            return "This storage has items.Cant be deleted";
+        }
     }
 
     @Override

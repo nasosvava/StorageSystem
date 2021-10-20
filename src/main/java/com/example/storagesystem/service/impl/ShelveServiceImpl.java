@@ -100,4 +100,15 @@ public class ShelveServiceImpl implements ShelveService {
         return shelveDTO;
     }
 
+    @Override
+    public String deleteShelveById(Long id) {
+        Shelve shelve = shelveRepository.findById(id).orElse(null);
+        if(shelve.getProduct().equals(null)){
+            shelveRepository.deleteById(id);
+            return "Shelve deleted successfully";
+        }else{
+            return "This shelve has products.Cant be deleted";
+        }
+    }
+
 }

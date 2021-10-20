@@ -3,10 +3,12 @@ package com.example.storagesystem.service.impl;
 import com.example.storagesystem.domain.MeasurementUnit;
 import com.example.storagesystem.domain.Product;
 import com.example.storagesystem.domain.Shelve;
+import com.example.storagesystem.domain.Stock;
 import com.example.storagesystem.dto.ProductDTO;
 import com.example.storagesystem.repository.MeasurementUnitRepository;
 import com.example.storagesystem.repository.ProductRepository;
 import com.example.storagesystem.repository.ShelveRepository;
+import com.example.storagesystem.repository.StockRepository;
 import com.example.storagesystem.service.ProductService;
 import com.example.storagesystem.service.ShelveService;
 import org.springframework.beans.BeanUtils;
@@ -27,6 +29,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ShelveRepository shelveRepository;
+
+    @Autowired
+    private StockRepository stockRepository;
 
     @Override
     public Product dtoToEntity(ProductDTO productDTO, Product product) {
@@ -92,7 +97,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(Long id) {
-
+    Stock stock = stockRepository.findByProduct_Id(id);
+    Product product = productRepository.findById(id).orElse(null);
     }
 
     @Override

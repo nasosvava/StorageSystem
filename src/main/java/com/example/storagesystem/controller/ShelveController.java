@@ -29,7 +29,10 @@ public class ShelveController {
         return new ResponseEntity<>(shelveService.saveShelve(shelveDTO),OK);
     }
 
-
+    @GetMapping("/deleteById/{id}")
+    public ResponseEntity<?> deleteShelveById(@PathVariable("id") Long shelveId){
+        return new ResponseEntity<>(shelveService.deleteShelveById(shelveId),OK);
+    }
 
     @GetMapping("/findById/{id}")
     public ResponseEntity<?> findShelveById(@PathVariable("id") Long shelveId){

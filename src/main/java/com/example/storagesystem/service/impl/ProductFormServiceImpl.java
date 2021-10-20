@@ -6,6 +6,7 @@ import com.example.storagesystem.domain.ProductForm;
 import com.example.storagesystem.domain.Stock;
 import com.example.storagesystem.dto.ProductDTO;
 import com.example.storagesystem.dto.ProductFormDTO;
+import com.example.storagesystem.dto.StockDTO;
 import com.example.storagesystem.enumaration.FormCategory;
 import com.example.storagesystem.enumaration.TransactionCategory;
 import com.example.storagesystem.repository.ProductFormRepository;
@@ -64,8 +65,8 @@ public class ProductFormServiceImpl implements ProductFormService {
     public ProductForm saveProductForm(ProductFormDTO productFormDTO) {
         ProductForm productForm;
 
-        List<Product> allProducts = productRepository.findAll();
-        List <Stock> allStocks = stockRepository.findAll();
+//        List<Product> allProducts = productRepository.findAll();
+//        List <Stock> allStocks = stockRepository.findAll();
         if (productFormDTO.getId() != null) {
             productForm = productFormRepository.getById(productFormDTO.getId());
         } else {
@@ -87,6 +88,15 @@ public class ProductFormServiceImpl implements ProductFormService {
         for (ProductForm productForm : allProductForm) {
             ProductFormDTO productFormDTO = new ProductFormDTO();
             allProductFormDTO.add(entityToDto(productFormDTO, productForm));
+            productFormDTO.setFormCategory(productForm.getFormCategory().name());
+            productFormDTO.setReceipts(productForm.getReceipts().name());
+            List<StockDTO> stockDTOS = new ArrayList<>();
+            for(Stock stock :productForm.getStock()){
+                StockDTO stockDTO = new StockDTO();
+                stockService.entityToDto(stockDTO,stock);
+                stockDTOS.add(stockDTO);
+            }
+            productFormDTO.setStock(stockDTOS);
         }
         return allProductFormDTO;
     }
@@ -96,6 +106,15 @@ public class ProductFormServiceImpl implements ProductFormService {
         ProductForm productForm = productFormRepository.findById(id).orElse(null);
         ProductFormDTO productFormDTO = new ProductFormDTO();
         entityToDto(productFormDTO, productForm);
+        productFormDTO.setFormCategory(productForm.getFormCategory().name());
+        productFormDTO.setReceipts(productForm.getReceipts().name());
+        List<StockDTO> stockDTOS = new ArrayList<>();
+        for(Stock stock :productForm.getStock()){
+            StockDTO stockDTO = new StockDTO();
+            stockService.entityToDto(stockDTO,stock);
+            stockDTOS.add(stockDTO);
+        }
+        productFormDTO.setStock(stockDTOS);
         return productFormDTO;
     }
 }

@@ -84,12 +84,21 @@ public class StorageImpl implements StorageService {
     public List<StorageDTO> findAllStorages() {
         List<StorageDTO> allStorageDto = new ArrayList<>();
         List<Storage> allStorage = storageRepository.findAll();
+
         for (Storage storage : allStorage) {
             StorageDTO storageDTO = new StorageDTO();
             allStorageDto.add(entityToDto(storageDTO,storage));
             for(Shelve shelve : storage.getShelves()){
                 ShelveDTO shelveDTO = new ShelveDTO();
                 storageDTO.getShelvesDTO().add(shelveService.entityToDto(shelveDTO,shelve));
+                List<ProductDTO> productDTOS = new ArrayList<>();
+                for(Product product : shelve.getProduct()){
+                    ProductDTO productDTO =  new ProductDTO();
+                    productService.entityToDto(productDTO,product);
+                    productDTO.setMeasurementUnitDTO(product.getMeasurementUnit().getName());
+                    productDTOS.add(productDTO);
+                }
+                shelveDTO.setProductDTO(productDTOS);
             }
         }
     return allStorageDto;

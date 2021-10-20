@@ -21,7 +21,7 @@ public class ShelveDTO {
 
     private String name;
 
-//    private Long storage;
+    private Long storage;
 
     private List<ProductDTO> productDTO;
 

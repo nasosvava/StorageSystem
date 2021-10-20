@@ -29,4 +29,14 @@ public class StockController {
     public ResponseEntity<?> findByDate(@RequestParam("id") Long productId,@RequestParam("date") @DateTimeFormat(pattern = "dd-MM-yyyy") Date date ){
         return new ResponseEntity<>(stockService.getProductQuantityForSpecificDate(productId,date),OK);
     }
+
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<?> findById(@PathVariable("id") Long stockId){
+        return new ResponseEntity<>(stockService.findById(stockId),OK);
+    }
+
+    @GetMapping("/findAll")
+    public ResponseEntity<?> findAllStocks(){
+        return new ResponseEntity<>(stockService.findAllStock(),OK);
+    }
 }

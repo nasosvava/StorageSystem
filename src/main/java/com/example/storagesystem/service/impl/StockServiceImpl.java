@@ -85,6 +85,8 @@ public class StockServiceImpl implements StockService {
         for(Stock stock:allStock){
             StockDTO stockDTO  = new StockDTO();
             allStockDTO.add(entityToDto(stockDTO,stock));
+            stockDTO.setProductForm(stock.getProductForm().getId());
+            stockDTO.setProduct(stock.getProduct().getId());
         }
         return allStockDTO;
     }
@@ -94,6 +96,8 @@ public class StockServiceImpl implements StockService {
         Stock stock = stockRepository.findById(id).orElse(null);
         StockDTO stockDTO = new StockDTO();
         entityToDto(stockDTO,stock);
+        stockDTO.setProductForm(stock.getProductForm().getId());
+        stockDTO.setProduct(stock.getProduct().getId());
         return stockDTO;
     }
 

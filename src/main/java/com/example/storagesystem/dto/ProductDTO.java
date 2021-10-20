@@ -20,6 +20,12 @@ public class ProductDTO {
 
     private String measurementUnitDTO;
 
+    private Long shelveDTO;
+
+    private Long storageDTO;
+
+//    private Long productFormDTO;
+
     private double maxQuantity;
 
 

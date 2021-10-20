@@ -2,12 +2,10 @@ package com.example.storagesystem.service.impl;
 
 import com.example.storagesystem.domain.MeasurementUnit;
 import com.example.storagesystem.domain.Product;
-import com.example.storagesystem.domain.Shelve;
 import com.example.storagesystem.dto.ProductDTO;
 import com.example.storagesystem.repository.MeasurementUnitRepository;
 import com.example.storagesystem.repository.ProductRepository;
 import com.example.storagesystem.repository.ShelveRepository;
-import com.example.storagesystem.service.MeasurementUnitService;
 import com.example.storagesystem.service.ProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,15 +64,6 @@ public class ProductServiceImpl implements ProductService {
                break;
            }
        }
-//       List<Shelve> shelves = shelveRepository.findAll();
-//       for(Shelve shelve : shelves){
-//           if (shelve.getId()==productDTO.getShelveDTO()){
-//               product.setShelve(shelve);
-//               break;
-//           }
-//       }
-
-
         productRepository.save(product);
         return product;
     }
@@ -83,9 +72,12 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductDTO> findAllProducts() {
         List<ProductDTO> allProductDTO = new ArrayList<>();
         List<Product> allProducts = productRepository.findAll();
-        for (int i = 0; i < allProducts.size(); i++) {
+        for (Product product : allProducts) {
             ProductDTO productDTO = new ProductDTO();
-            allProductDTO.add(entityToDto(productDTO,allProducts.get(i)));
+            allProductDTO.add(entityToDto(productDTO,product));
+            productDTO.setMeasurementUnitDTO(product.getMeasurementUnit().getName());
+            productDTO.setShelveDTO(product.getShelve().getId());
+            productDTO.setStorageDTO(product.getShelve().getStorage().getId());
         }
         return allProductDTO;
     }
@@ -105,6 +97,9 @@ public class ProductServiceImpl implements ProductService {
         Product product = productRepository.findById(id).orElse(null);
         ProductDTO productDTO = new ProductDTO();
         entityToDto(productDTO,product);
+        productDTO.setMeasurementUnitDTO(product.getMeasurementUnit().getName());
+        productDTO.setShelveDTO(product.getShelve().getId());
+        productDTO.setStorageDTO(product.getShelve().getStorage().getId());
         return productDTO;
     }
 }

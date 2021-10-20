@@ -1,10 +1,13 @@
 package com.example.storagesystem.service.impl;
 
+import com.example.storagesystem.domain.Product;
 import com.example.storagesystem.domain.Shelve;
 import com.example.storagesystem.domain.Storage;
+import com.example.storagesystem.dto.ProductDTO;
 import com.example.storagesystem.dto.ShelveDTO;
 import com.example.storagesystem.dto.StorageDTO;
 import com.example.storagesystem.repository.ShelveRepository;
+import com.example.storagesystem.service.ProductService;
 import com.example.storagesystem.service.ShelveService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,9 @@ public class ShelveServiceImpl implements ShelveService {
 
     @Autowired
     private ShelveRepository shelveRepository;
+
+    @Autowired
+    private ProductService productService;
 
     @Override
     public ShelveDTO entityToDto(ShelveDTO shelveDTO, Shelve shelve) {
@@ -61,9 +67,18 @@ public class ShelveServiceImpl implements ShelveService {
     public List<ShelveDTO> findAllShelves() {
         List<ShelveDTO> allShelveDto = new ArrayList<>();
         List<Shelve> allShelve = shelveRepository.findAll();
-        for (int i = 0; i < allShelve.size(); i++) {
+        for (Shelve shelve : allShelve) {
             ShelveDTO shelveDTO = new ShelveDTO();
-            allShelveDto.add(entityToDto(shelveDTO,allShelve.get(i)));
+            allShelveDto.add(entityToDto(shelveDTO,shelve));
+            shelveDTO.setStorage(shelve.getStorage().getId());
+            List<ProductDTO> productDTOS = new ArrayList<>();
+            for(Product product : shelve.getProduct()){
+                ProductDTO productDTO =  new ProductDTO();
+                productService.entityToDto(productDTO,product);
+                productDTO.setMeasurementUnitDTO(product.getMeasurementUnit().getName());
+                productDTOS.add(productDTO);
+            }
+            shelveDTO.setProductDTO(productDTOS);
         }
         return allShelveDto;
     }
@@ -73,6 +88,15 @@ public class ShelveServiceImpl implements ShelveService {
         Shelve shelve = shelveRepository.findById(id).orElse(null);
         ShelveDTO shelveDTO = new ShelveDTO();
         entityToDto(shelveDTO,shelve);
+        List<ProductDTO> productDTOS = new ArrayList<>();
+        for(Product product : shelve.getProduct()){
+            ProductDTO productDTO =  new ProductDTO();
+            productService.entityToDto(productDTO,product);
+            productDTO.setMeasurementUnitDTO(product.getMeasurementUnit().getName());
+            productDTOS.add(productDTO);
+        }
+        shelveDTO.setProductDTO(productDTOS);
+        shelveDTO.setStorage(shelve.getStorage().getId());
         return shelveDTO;
     }
 

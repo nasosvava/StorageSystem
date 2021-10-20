@@ -18,13 +18,9 @@ public class ProductDTO {
 
     private String description;
 
-    private Long measurementUnitDTO;
+    private String measurementUnitDTO;
 
-    private Long shelveDTO;
+    private double maxQuantity;
 
-    private Long productFormDTO;
 
-    private double quantity;
-
-    private List<Long> stock;
 }

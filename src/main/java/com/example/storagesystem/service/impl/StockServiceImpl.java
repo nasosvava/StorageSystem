@@ -63,7 +63,14 @@ public class StockServiceImpl implements StockService {
             stock = new Stock();
         }
         if(productForm.getFormCategory().equals(FormCategory.IMPORT_FORMS)){product.setMaxQuantity(product.getMaxQuantity()+stockDTO.getQuantity());}
-        else{product.setMaxQuantity(product.getMaxQuantity()-stockDTO.getQuantity());}
+        else{
+            if((product.getMaxQuantity()-stockDTO.getQuantity())<=0){
+                product.setMaxQuantity(0);
+            }else {
+                product.setMaxQuantity(
+                        product.getMaxQuantity() - stockDTO.getQuantity());
+            }
+        }
         dtoToEntity(stockDTO,stock);
         stock.setProduct(product);
         stock.setProductForm(productForm);
@@ -92,9 +99,6 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public double getProductQuantityForSpecificDate(Long productId, Date date) {
-//        Product product = productRepository.findById(productId).orElse(null);
-//        ProductForm productForm = productFormRepository.findById(prId).orElse(null);
-//        System.out.println(productForm.getImportDate());
         return stockRepository.findProductQuantityForSpecificDate(productId,date);
     }
 }

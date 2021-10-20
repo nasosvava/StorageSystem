@@ -61,18 +61,18 @@ public class ProductServiceImpl implements ProductService {
         dtoToEntity(productDTO,product);
         List<MeasurementUnit> measurementUnits= measurementUnitRepository.findAll();
        for(MeasurementUnit measurementUnit : measurementUnits){
-           if (measurementUnit.getId() == productDTO.getMeasurementUnitDTO()){
+           if (measurementUnit.getName().equals(productDTO.getMeasurementUnitDTO())){
                product.setMeasurementUnit(measurementUnit);
                break;
            }
        }
-       List<Shelve> shelves = shelveRepository.findAll();
-       for(Shelve shelve : shelves){
-           if (shelve.getId()==productDTO.getShelveDTO()){
-               product.setShelve(shelve);
-               break;
-           }
-       }
+//       List<Shelve> shelves = shelveRepository.findAll();
+//       for(Shelve shelve : shelves){
+//           if (shelve.getId()==productDTO.getShelveDTO()){
+//               product.setShelve(shelve);
+//               break;
+//           }
+//       }
 
 
         productRepository.save(product);

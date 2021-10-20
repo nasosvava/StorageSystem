@@ -8,6 +8,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -34,8 +35,7 @@ public class Shelve implements Serializable {
 
 
     @OneToMany(mappedBy="shelve")
-    @JsonIgnore
     @JsonManagedReference
-    private List<Product> product;
+    private List<Product> product ;
 
 }

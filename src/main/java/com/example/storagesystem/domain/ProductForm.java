@@ -4,6 +4,7 @@ import com.example.storagesystem.enumaration.TransactionCategory;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @ToString
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Table(name = "productForm")
 public class ProductForm implements Serializable {
 
@@ -52,5 +54,6 @@ public class ProductForm implements Serializable {
 
     @OneToMany(mappedBy = "productForm")
     @JsonBackReference
+
     private List<Stock> stock;
 }

@@ -13,6 +13,7 @@ import com.example.storagesystem.service.ShelveService;
 import com.example.storagesystem.service.StorageService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -68,7 +69,13 @@ public class StorageImpl implements StorageService {
         List<Shelve> shelf = new ArrayList<>();
         for (ShelveDTO shelveDTO : storageDTO.getShelvesDTO()){
 //            shelveDTO.setStorage(storage.getId());
-            Shelve shelve = new Shelve();
+            Shelve shelve;
+            if(shelveDTO.getId()!=null){
+                shelve = shelveRepository.getById(shelveDTO.getId());
+            }else{
+                shelve = new Shelve();
+            }
+
             shelveService.dtoToEntity(shelveDTO,shelve);
             shelve.setStorage(storageRepository.getById(storage.getId()));
             shelveRepository.save(shelve);

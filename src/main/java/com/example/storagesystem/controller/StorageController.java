@@ -38,4 +38,10 @@ public class StorageController {
     public ResponseEntity<?> findStorageById(@PathVariable("id") Long storageId){
         return new ResponseEntity<>(storageService.findById(storageId),OK);
     }
+
+    @GetMapping("/deleteById/{id}")
+    public ResponseEntity<?> deleteStorageById(@PathVariable("id") Long storageId){
+        storageService.deleteStorage(storageId);
+        return new ResponseEntity<>("",OK);
+    }
 }

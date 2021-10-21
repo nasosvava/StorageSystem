@@ -3,6 +3,7 @@ package com.example.storagesystem.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -19,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @ToString
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Table(name = "shelve")
 public class Shelve implements Serializable {
 
@@ -36,7 +38,7 @@ public class Shelve implements Serializable {
     private Storage storage;
 
 
-    @OneToMany(mappedBy="shelve")
+    @OneToMany(mappedBy="shelve",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Product> product ;
 

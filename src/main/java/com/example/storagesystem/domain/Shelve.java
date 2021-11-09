@@ -22,19 +22,19 @@ import java.util.List;
 @ToString
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Table(name = "shelve")
-public class Shelve implements Serializable {
+public class Shelve {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
-    @NotNull
     private String name;
 
     @ManyToOne
     @JoinColumn(name = "storage_id")
     @JsonBackReference
+    @NotNull
     private Storage storage;
 
 

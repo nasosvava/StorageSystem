@@ -16,8 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class StorageImpl implements StorageService {
@@ -65,25 +64,15 @@ public class StorageImpl implements StorageService {
             storage = new Storage();
         }
         dtoToEntity(storageDTO,storage);
-        storageRepository.save(storage);
-        List<Shelve> shelf = new ArrayList<>();
-        for (ShelveDTO shelveDTO : storageDTO.getShelvesDTO()){
-//            shelveDTO.setStorage(storage.getId());
-            Shelve shelve;
-            if(shelveDTO.getId()!=null){
-                shelve = shelveRepository.getById(shelveDTO.getId());
-            }else{
-                shelve = new Shelve();
-            }
 
-            shelveService.dtoToEntity(shelveDTO,shelve);
-            shelve.setStorage(storageRepository.getById(storage.getId()));
-            shelveRepository.save(shelve);
-            shelf.add(shelve);
-            storage.setShelves(shelf);
-            storageRepository.save(storage);
-            storage.getShelves();
-        }
+        storageRepository.save(storage);
+//        for (int i = 0; i < storageDTO.getNumberOfShelves(); i++) {
+//                Shelve shelve=  new Shelve();
+//                shelve.setStorage(storage);
+//                shelve.setName("S"+storage.getId()+i);
+//            shelveRepository.save(shelve);
+//
+//        }
         return  storage;
     }
 
@@ -91,9 +80,9 @@ public class StorageImpl implements StorageService {
     public List<StorageDTO> findAllStorages() {
         List<StorageDTO> allStorageDto = new ArrayList<>();
         List<Storage> allStorage = storageRepository.findAll();
-
         for (Storage storage : allStorage) {
             StorageDTO storageDTO = new StorageDTO();
+            storageDTO.setNumberOfShelves(storage.getShelves().size());
             allStorageDto.add(entityToDto(storageDTO,storage));
             for(Shelve shelve : storage.getShelves()){
                 ShelveDTO shelveDTO = new ShelveDTO();
@@ -115,7 +104,7 @@ public class StorageImpl implements StorageService {
     @Override
     public String deleteStorage(Long id) {
         Storage storage = storageRepository.findById(id).orElse(null);
-        if(storage.getShelves().equals(null)){
+        if(storage.getShelves().size()==0 || storage.getShelves().equals(null)){
         storageRepository.deleteById(id);
         return "Storage deleted successfully";
         }else {
@@ -147,6 +136,17 @@ public class StorageImpl implements StorageService {
             shelveDTO.setProductDTO(productDTOS);
         }
         storageDTO.setShelvesDTO(shelveDTOS);
+
         return storageDTO;
+    }
+
+    @Override
+    public HashMap<Long,String> findAllStorageNames() {
+        HashMap<Long,String> allStorageDto = new HashMap<Long, String>();
+        List<Storage> allStorage = storageRepository.findAll();
+        for(Storage storage : allStorage){
+            allStorageDto.put(storage.getId(),storage.getName());
+        }
+        return allStorageDto;
     }
 }

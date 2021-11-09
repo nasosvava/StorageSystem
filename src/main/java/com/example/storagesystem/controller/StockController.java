@@ -14,7 +14,7 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping(path = "/stock")
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin("http://localhost:4200")
 public class StockController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class StockController {
         return new ResponseEntity<>(stockService.findById(stockId),OK);
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/getAll")
     public ResponseEntity<?> findAllStocks(){
         return new ResponseEntity<>(stockService.findAllStock(),OK);
     }

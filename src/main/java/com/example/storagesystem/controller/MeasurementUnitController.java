@@ -14,7 +14,7 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping(path = "/measurementUnit")
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin("http://localhost:4200")
 public class MeasurementUnitController {
 
     @Autowired
@@ -33,5 +33,11 @@ public class MeasurementUnitController {
     @GetMapping("/findById/{id}")
     public ResponseEntity<?> findMeasurementUnitById(@PathVariable("id") Long measurementUnitId){
         return new ResponseEntity<>(measurementUnitService.findById(measurementUnitId),OK);
+    }
+
+    @DeleteMapping ("/deleteById/{id}")
+    public ResponseEntity<?> deleteProductById(@PathVariable("id") Long measurementUnitId){
+        measurementUnitService.deleteMeasurementUnit(measurementUnitId);
+        return new ResponseEntity<>("product deleted successfully",OK);
     }
 }

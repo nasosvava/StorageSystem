@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 @Service
 public class ProductFormServiceImpl implements ProductFormService {
@@ -75,6 +76,7 @@ public class ProductFormServiceImpl implements ProductFormService {
         dtoToEntity(productFormDTO, productForm);
         productForm.setFormCategory(FormCategory.valueOf(productFormDTO.getFormCategory()));
         productForm.setReceipts(TransactionCategory.valueOf(productFormDTO.getReceipts()));
+        productForm.setImportDate(new Date());
         productFormRepository.save(productForm);
         return productForm;
     }
@@ -94,6 +96,11 @@ public class ProductFormServiceImpl implements ProductFormService {
             for(Stock stock :productForm.getStock()){
                 StockDTO stockDTO = new StockDTO();
                 stockService.entityToDto(stockDTO,stock);
+                stockDTO.setProduct(stock.getProduct().getId());
+                stockDTO.setBarcode(stock.getProduct().getBarcode());
+                Product product = productRepository.findById(stock.getProduct().getId()).orElse(null);
+                stockDTO.setBarcode(product.getBarcode());
+                stockDTO.setProductForm(stock.getProductForm().getId());
                 stockDTOS.add(stockDTO);
             }
             productFormDTO.setStock(stockDTOS);

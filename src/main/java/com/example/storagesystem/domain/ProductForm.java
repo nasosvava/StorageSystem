@@ -40,9 +40,6 @@ public class ProductForm implements Serializable {
     @NotNull
     private Date importDate;
 
-//    @Column(name = "quantity")
-//    private double quantity;
-
     @Column(name = "description")
     @NotNull
     private String description;

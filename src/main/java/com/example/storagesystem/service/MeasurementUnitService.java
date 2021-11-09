@@ -15,7 +15,8 @@ public interface MeasurementUnitService {
 
     List<MeasurementUnitDTO> findAllMeasurementUnits();
 
-    void deleteMeasurementUnit(Long id);
+    String deleteMeasurementUnit(Long id);
 
     MeasurementUnitDTO findById(Long id);
+
 }

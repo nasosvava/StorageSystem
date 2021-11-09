@@ -13,7 +13,7 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping(path = "/shelve")
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin
 public class ShelveController {
 
     @Autowired
@@ -29,9 +29,9 @@ public class ShelveController {
         return new ResponseEntity<>(shelveService.saveShelve(shelveDTO),OK);
     }
 
-    @GetMapping("/deleteById/{id}")
-    public ResponseEntity<?> deleteShelveById(@PathVariable("id") Long shelveId){
-        return new ResponseEntity<>(shelveService.deleteShelveById(shelveId),OK);
+    @DeleteMapping ("/deleteById/{id}")
+    public void deleteShelveById(@PathVariable("id") Long shelveId){
+        shelveService.deleteShelveById(shelveId);
     }
 
     @GetMapping("/findById/{id}")

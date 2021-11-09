@@ -26,20 +26,26 @@ import java.util.Set;
 @ToString
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Table(name = "storage")
-public class Storage implements Serializable {
+public class Storage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
+    @NotNull
+    private String name;
+
     @Column(name = "description")
     @NotNull
-    private String storage_description;
+    private String storageDescription;
 
 
     @OneToMany(mappedBy = "storage",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Shelve> shelves;
+
+
 
 
 }

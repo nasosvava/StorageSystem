@@ -11,13 +11,16 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class StorageDTO {
 
     private Long id;
 
-    private String storage_description;
+    private String name;
+
+    private String storageDescription;
 
     private List<ShelveDTO> shelvesDTO = new ArrayList<>();
+
+    private int numberOfShelves;
 
 }

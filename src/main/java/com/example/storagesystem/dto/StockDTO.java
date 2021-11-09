@@ -18,4 +18,6 @@ public class StockDTO {
     private Long productForm;
 
     private double quantity;
+
+    private String barcode;
 }

@@ -33,4 +33,6 @@ public class ProductFormDTO {
 
     private List<StockDTO> stock;
 
+
+
 }

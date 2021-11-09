@@ -1,14 +1,8 @@
 package com.example.storagesystem.service.impl;
 
-import com.example.storagesystem.domain.MeasurementUnit;
-import com.example.storagesystem.domain.Product;
-import com.example.storagesystem.domain.Shelve;
-import com.example.storagesystem.domain.Stock;
+import com.example.storagesystem.domain.*;
 import com.example.storagesystem.dto.ProductDTO;
-import com.example.storagesystem.repository.MeasurementUnitRepository;
-import com.example.storagesystem.repository.ProductRepository;
-import com.example.storagesystem.repository.ShelveRepository;
-import com.example.storagesystem.repository.StockRepository;
+import com.example.storagesystem.repository.*;
 import com.example.storagesystem.service.ProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +19,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private MeasurementUnitRepository measurementUnitRepository;
+
+    @Autowired
+    private StorageRepository storageRepository;
 
     @Autowired
     private ShelveRepository shelveRepository;
@@ -88,8 +85,11 @@ public class ProductServiceImpl implements ProductService {
             ProductDTO productDTO = new ProductDTO();
             allProductDTO.add(entityToDto(productDTO,product));
             productDTO.setMeasurementUnitDTO(product.getMeasurementUnit().getName());
-            productDTO.setShelveDTO(product.getShelve().getId());
+            Shelve shelve = shelveRepository.getById(product.getShelve().getId());
+            productDTO.setShelveName(shelve.getName());
             productDTO.setStorageDTO(product.getShelve().getStorage().getId());
+            Storage storage = storageRepository.findById(shelve.getStorage().getId()).orElse(null);
+            productDTO.setStorageName(storage.getName());
         }
         return allProductDTO;
     }

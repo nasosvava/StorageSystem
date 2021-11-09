@@ -22,9 +22,11 @@ public class ProductDTO {
 
     private Long shelveDTO;
 
+    private String shelveName;
+
     private Long storageDTO;
 
-//    private Long productFormDTO;
+    private String storageName;
 
     private double maxQuantity;
 

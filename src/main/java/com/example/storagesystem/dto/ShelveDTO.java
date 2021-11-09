@@ -14,7 +14,6 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class ShelveDTO {
 
     private Long id;
@@ -22,6 +21,8 @@ public class ShelveDTO {
     private String name;
 
     private Long storage;
+
+    private String storageName;
 
     private List<ProductDTO> productDTO;
 

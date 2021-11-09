@@ -4,6 +4,8 @@ import com.example.storagesystem.domain.Shelve;
 import com.example.storagesystem.domain.Storage;
 import com.example.storagesystem.dto.StorageDTO;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public interface StorageService {
@@ -21,6 +23,8 @@ public interface StorageService {
     Long numberOfShelves();
 
     StorageDTO findById(Long id);
+
+    HashMap<Long,String> findAllStorageNames();
 
 
 

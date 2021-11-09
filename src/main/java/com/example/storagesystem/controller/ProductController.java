@@ -15,7 +15,7 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping(path = "/product")
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin("http://localhost:4200")
 public class ProductController {
 
     @Autowired
@@ -37,7 +37,7 @@ public class ProductController {
         return new ResponseEntity<>(productService.findById(productId),OK);
     }
 
-    @GetMapping("/deleteById/{id}")
+    @DeleteMapping ("/deleteById/{id}")
     public ResponseEntity<?> deleteProductById(@PathVariable("id") Long productId){
         productService.deleteProduct(productId);
         return new ResponseEntity<>("product deleted successfully",OK);

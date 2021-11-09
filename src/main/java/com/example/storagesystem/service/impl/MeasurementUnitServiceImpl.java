@@ -1,10 +1,12 @@
 package com.example.storagesystem.service.impl;
 
 import com.example.storagesystem.domain.MeasurementUnit;
+import com.example.storagesystem.domain.Product;
 import com.example.storagesystem.domain.Shelve;
 import com.example.storagesystem.dto.MeasurementUnitDTO;
 import com.example.storagesystem.dto.ShelveDTO;
 import com.example.storagesystem.repository.MeasurementUnitRepository;
+import com.example.storagesystem.repository.ProductRepository;
 import com.example.storagesystem.service.MeasurementUnitService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ public class MeasurementUnitServiceImpl implements MeasurementUnitService {
     @Autowired
     private MeasurementUnitRepository measurementUnitRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public MeasurementUnit dtoToEntity(MeasurementUnitDTO measurementUnitDTO, MeasurementUnit measurementUnit) {
@@ -67,8 +71,16 @@ public class MeasurementUnitServiceImpl implements MeasurementUnitService {
     }
 
     @Override
-    public void deleteMeasurementUnit(Long id) {
-
+    public String deleteMeasurementUnit(Long id) {
+        MeasurementUnit measurementUnit = measurementUnitRepository.getById(id);
+        List<Product> products = productRepository.findAll();
+        for(Product product : products){
+            if(product.getMeasurementUnit().getName().equals(measurementUnit.getName())){
+                return "This item is used. It cant be deleted";
+            }
+        }
+        measurementUnitRepository.deleteById(id);
+        return "This Measurement Unit is deleted";
     }
 
     @Override

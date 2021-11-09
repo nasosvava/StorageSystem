@@ -17,7 +17,9 @@ public interface ShelveService {
 
     ShelveDTO findById(Long id);
 
-    String deleteShelveById(Long id);
+    int findShelveByStorage(Long storageId);
+
+    void deleteShelveById(Long id);
 
 
 

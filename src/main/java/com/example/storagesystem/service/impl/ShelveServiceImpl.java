@@ -7,8 +7,10 @@ import com.example.storagesystem.dto.ProductDTO;
 import com.example.storagesystem.dto.ShelveDTO;
 import com.example.storagesystem.dto.StorageDTO;
 import com.example.storagesystem.repository.ShelveRepository;
+import com.example.storagesystem.repository.StorageRepository;
 import com.example.storagesystem.service.ProductService;
 import com.example.storagesystem.service.ShelveService;
+import com.example.storagesystem.service.StorageService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,12 @@ public class ShelveServiceImpl implements ShelveService {
 
     @Autowired
     private ShelveRepository shelveRepository;
+
+    @Autowired
+    private StorageRepository storageRepository;
+
+    @Autowired
+    private StorageService storageService;
 
     @Autowired
     private ProductService productService;
@@ -51,12 +59,19 @@ public class ShelveServiceImpl implements ShelveService {
     @Override
     public ShelveDTO saveShelve(ShelveDTO shelveDTO) {
         Shelve shelve;
+        List<Storage> storages = storageRepository.findAll();
         if (shelveDTO.getId() != null){
             shelve = shelveRepository.getById(shelveDTO.getId());
         }else {
             shelve = new Shelve();
         }
         dtoToEntity(shelveDTO,shelve);
+        for(Storage storage: storages){
+            if(shelveDTO.getStorage()==storage.getId()) {
+                shelve.setStorage(storage);
+                storage.getShelves().add(shelve);
+            }
+        }
         shelveRepository.save(shelve);
         return  shelveDTO;
 
@@ -67,10 +82,13 @@ public class ShelveServiceImpl implements ShelveService {
     public List<ShelveDTO> findAllShelves() {
         List<ShelveDTO> allShelveDto = new ArrayList<>();
         List<Shelve> allShelve = shelveRepository.findAll();
+
         for (Shelve shelve : allShelve) {
             ShelveDTO shelveDTO = new ShelveDTO();
             allShelveDto.add(entityToDto(shelveDTO,shelve));
             shelveDTO.setStorage(shelve.getStorage().getId());
+            Storage storage = storageRepository.findById(shelveDTO.getStorage()).orElse(null);
+            shelveDTO.setStorageName(storage.getName());
             List<ProductDTO> productDTOS = new ArrayList<>();
             for(Product product : shelve.getProduct()){
                 ProductDTO productDTO =  new ProductDTO();
@@ -101,14 +119,13 @@ public class ShelveServiceImpl implements ShelveService {
     }
 
     @Override
-    public String deleteShelveById(Long id) {
-        Shelve shelve = shelveRepository.findById(id).orElse(null);
-        if(shelve.getProduct().equals(null)){
+    public int findShelveByStorage(Long storageId) {
+        return shelveRepository.countShelveByStorage(storageId);
+    }
+
+    @Override
+    public void deleteShelveById(Long id) {
             shelveRepository.deleteById(id);
-            return "Shelve deleted successfully";
-        }else{
-            return "This shelve has products.Cant be deleted";
-        }
     }
 
 }

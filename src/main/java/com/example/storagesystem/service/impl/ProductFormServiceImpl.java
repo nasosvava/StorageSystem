@@ -65,7 +65,6 @@ public class ProductFormServiceImpl implements ProductFormService {
     @Override
     public ProductForm saveProductForm(ProductFormDTO productFormDTO) {
         ProductForm productForm;
-
         List<Product> allProducts = productRepository.findAll();
         List <Stock> allStocks = stockRepository.findAll();
         if (productFormDTO.getId() != null) {

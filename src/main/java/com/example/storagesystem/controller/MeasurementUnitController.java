@@ -36,8 +36,7 @@ public class MeasurementUnitController {
     }
 
     @DeleteMapping ("/deleteById/{id}")
-    public ResponseEntity<?> deleteProductById(@PathVariable("id") Long measurementUnitId){
+    public void deleteProductById(@PathVariable("id") Long measurementUnitId){
         measurementUnitService.deleteMeasurementUnit(measurementUnitId);
-        return new ResponseEntity<>("product deleted successfully",OK);
     }
 }

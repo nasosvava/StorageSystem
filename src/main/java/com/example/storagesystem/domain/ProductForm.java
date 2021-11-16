@@ -51,6 +51,8 @@ public class ProductForm implements Serializable {
 
     @OneToMany(mappedBy = "productForm")
     @JsonBackReference
-
     private List<Stock> stock;
+
+    @Column(name = "canceled")
+    private boolean canceled = true;
 }

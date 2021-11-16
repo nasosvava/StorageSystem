@@ -71,16 +71,9 @@ public class MeasurementUnitServiceImpl implements MeasurementUnitService {
     }
 
     @Override
-    public String deleteMeasurementUnit(Long id) {
-        MeasurementUnit measurementUnit = measurementUnitRepository.getById(id);
-        List<Product> products = productRepository.findAll();
-        for(Product product : products){
-            if(product.getMeasurementUnit().getName().equals(measurementUnit.getName())){
-                return "This item is used. It cant be deleted";
-            }
-        }
+    public void deleteMeasurementUnit(Long id) {
+        System.out.println(id);
         measurementUnitRepository.deleteById(id);
-        return "This Measurement Unit is deleted";
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 import static org.springframework.http.HttpStatus.OK;
@@ -26,7 +27,8 @@ public class StockController {
     }
 
     @GetMapping("/findByDate")
-    public ResponseEntity<?> findByDate(@RequestParam("id") Long productId,@RequestParam("date") @DateTimeFormat(pattern = "dd-MM-yyyy") Date date ){
+    public ResponseEntity<?> findByDate(@RequestParam("id") Long productId, @RequestParam("date") @DateTimeFormat(pattern = "dd-MM-yyyy") Date date ){
+
         return new ResponseEntity<>(stockService.getProductQuantityForSpecificDate(productId,date),OK);
     }
 
